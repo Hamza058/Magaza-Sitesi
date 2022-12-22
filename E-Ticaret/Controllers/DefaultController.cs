@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using E_Ticaret.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using DataAccessLayer.Concrete;
 
 namespace E_Ticaret.Controllers
 {
@@ -14,6 +15,7 @@ namespace E_Ticaret.Controllers
     {
         ProductManager pm = new ProductManager(new EFProductDal());
         ProductCategoryManager pcm = new ProductCategoryManager(new EFProductCategoryDal());
+        Context c = new Context(); 
         public IActionResult Index()
         {
             var values = pm.TGetList();
@@ -42,6 +44,7 @@ namespace E_Ticaret.Controllers
                 new(){Data="44",Value="44"},
                 new(){Data="45",Value="45"},
             }, "Value", "Data");
+
             var value = pm.TGetByID(id);
             return View(value);
         }

@@ -19,5 +19,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Brand> Brands { get; set; }
+        public DbSet<Image> Images { get; set; }
     }
 }

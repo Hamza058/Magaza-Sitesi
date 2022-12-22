@@ -40,12 +40,12 @@
 <br />
 <div class="container-fluid">
     <div class="row">
+        <h2 class="text-center">Ürünler</h2>
         <div class="col-9 ps-3">
-            <h2 class="text-center">Ürünler</h2>
             <div class="row mb-2">
                 @foreach (var item in Model)
                 {
-                    <div class="col-md me-1 mt-1 border bordered">
+                    <div class="col-md-4 mt-1 border bordered">
                         <div class="row-fluid p-2">
                             <div class="col mb-1 border border-dark">
                                 <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
@@ -56,7 +56,7 @@
                                 <p class="border-bottom bordered pb-1">@item.Price TL</p>
                             </div>
                             <div class="col text-center">
-                                <div class="col "><b>@item.Brand</b> @item.ProductName.Split(" ")[0]</div>
+                                <div class="col "><b>Marka</b> @item.ProductName.Split(" ")[0]</div>
                                 <div class="col">@item.ProductName.Split(" ")[1]</div>
                             </div>
                             <div class="col text-center mt-2">
@@ -65,59 +65,6 @@
                         </div>
                     </div>
                 }
-            </div>
-            <div class="row mb-2">
-                <div class="col-md me-1 mt-1 border bordered">
-                    <div class="row-fluid p-2">
-                        <div class="col mb-1 border border-dark">
-                            <img src="~/img/a1.png" width="100%" />
-                        </div>
-                        <div class="col text-center pt-2 text-danger">
-                            <p class="border-bottom bordered pb-1">100 TL</p>
-                        </div>
-                        <div class="col text-center">
-                            <div class="col ">Hummel Spor</div>
-                            <div class="col">Aykkabı</div>
-                        </div>
-                        <div class="col text-center mt-2">
-                            <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md me-1 mt-1 border bordered">
-                    <div class="row-fluid p-2">
-                        <div class="col mb-1 border border-dark">
-                            <img src="~/img/a2.png" width="100%" />
-                        </div>
-                        <div class="col text-center pt-2 text-danger">
-                            <p class="border-bottom bordered pb-1">200 TL</p>
-                        </div>
-                        <div class="col text-center">
-                            <div class="col ">Adidas Spor</div>
-                            <div class="col">Aykkabı</div>
-                        </div>
-                        <div class="col text-center mt-2">
-                            <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md me-1 mt-1 border bordered">
-                    <div class="row-fluid p-2">
-                        <div class="col mb-1 border border-dark">
-                            <img src="~/img/a3.png" width="100%" />
-                        </div>
-                        <div class="col text-center pt-2 text-danger">
-                            <p class="border-bottom bordered pb-1">300 TL</p>
-                        </div>
-                        <div class="col text-center">
-                            <div class="col">Nike Spor</div>
-                            <div class="col">Aykkabı</div>
-                        </div>
-                        <div class="col text-center mt-2">
-                            <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
         <div class="col-3 mt-2">
@@ -139,14 +86,14 @@
                     <div class="col text-center border-bottom bordered">
                         <h5>Markalar</h5>
                     </div>
-                    <div class="col mt-1 pe-2 text-end">
+                    @*<div class="col mt-1 pe-2 text-end">
                         <ul style="list-style:none">
-                            @foreach (var item in Model)
+                            @foreach (var item in ViewBag.brand as List<string>)
                             {
-                                <li><a href="#" class="text-decoration-none text-dark">@item.Brand</a></li>
+                                <li><a href="#" class="text-decoration-none text-dark">@item</a></li>
                             }
                         </ul>
-                    </div>
+                    </div>*@
                 </div>
             </div>
         </div>
