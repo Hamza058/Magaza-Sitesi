@@ -1,5 +1,4 @@
 ﻿@model EntityLayer.Concrete.Product
-
 @{
     ViewData["Title"] = "Single";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -48,19 +47,15 @@
                         <div class="col-auto"><p class="fs-2 pt-2"> @Model.ProductName</p></div>
                     </div>
                 </div>
-                <div class="col"><text class="text-danger">Satıcı: </text>Lorem ipsum dolor sit.</div>
-                <div class="col mt-1"><b>300 TL</b></div>
+                <div class="col"><text class="text-danger">Satıcı: </text>@Model.Brand</div>
+                <div class="col mt-1"><b>@Model.Price TL</b></div>
                 <div class="col mt-3">
                     <div class="row-fluid-cols-2">
                         <div class="col">
                             <h6>Renkler</h6>
                         </div>
                         <div class="col">
-                            <select class="form-select">
-                                <option>Beyaz</option>
-                                <option>Mavi</option>
-                                <option>Siyah</option>
-                            </select>
+                            <select class="form-select" asp-items="@ViewBag.Colors"></select>
                         </div>
                     </div>
                 </div>
@@ -70,13 +65,7 @@
                             <h6>Numaralar</h6>
                         </div>
                         <div class="col">
-                            <select class="form-select">
-                                <option>40</option>
-                                <option>41</option>
-                                <option>42</option>
-                                <option>43</option>
-                                <option>44</option>
-                            </select>
+                            <select class="form-select" asp-items="@ViewBag.Numbers"></select>
                         </div>
                     </div>
                 </div>
