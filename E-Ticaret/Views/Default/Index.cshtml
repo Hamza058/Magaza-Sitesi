@@ -1,0 +1,154 @@
+﻿@using EntityLayer.Concrete
+@model List<Product>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+    <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+    </div>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="~/img/araba.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/araba.jpg" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="~/img/araba.jpg" class="d-block w-100" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<br />
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-9 ps-3">
+            <h2 class="text-center">Ürünler</h2>
+            <div class="row mb-2">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md me-1 mt-1 border bordered">
+                        <div class="row-fluid p-2">
+                            <div class="col mb-1 border border-dark">
+                                <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
+                                    <img src="~/img/@item.ProductImage" width="100%" />
+                                </a>
+                            </div>
+                            <div class="col text-center pt-2 text-danger">
+                                <p class="border-bottom bordered pb-1">@item.Price TL</p>
+                            </div>
+                            <div class="col text-center">
+                                <div class="col "><b>@item.Brand</b> @item.ProductName.Split(" ")[0]</div>
+                                <div class="col">@item.ProductName.Split(" ")[1]</div>
+                            </div>
+                            <div class="col text-center mt-2">
+                                <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="row mb-2">
+                <div class="col-md me-1 mt-1 border bordered">
+                    <div class="row-fluid p-2">
+                        <div class="col mb-1 border border-dark">
+                            <img src="~/img/a1.png" width="100%" />
+                        </div>
+                        <div class="col text-center pt-2 text-danger">
+                            <p class="border-bottom bordered pb-1">100 TL</p>
+                        </div>
+                        <div class="col text-center">
+                            <div class="col ">Hummel Spor</div>
+                            <div class="col">Aykkabı</div>
+                        </div>
+                        <div class="col text-center mt-2">
+                            <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md me-1 mt-1 border bordered">
+                    <div class="row-fluid p-2">
+                        <div class="col mb-1 border border-dark">
+                            <img src="~/img/a2.png" width="100%" />
+                        </div>
+                        <div class="col text-center pt-2 text-danger">
+                            <p class="border-bottom bordered pb-1">200 TL</p>
+                        </div>
+                        <div class="col text-center">
+                            <div class="col ">Adidas Spor</div>
+                            <div class="col">Aykkabı</div>
+                        </div>
+                        <div class="col text-center mt-2">
+                            <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md me-1 mt-1 border bordered">
+                    <div class="row-fluid p-2">
+                        <div class="col mb-1 border border-dark">
+                            <img src="~/img/a3.png" width="100%" />
+                        </div>
+                        <div class="col text-center pt-2 text-danger">
+                            <p class="border-bottom bordered pb-1">300 TL</p>
+                        </div>
+                        <div class="col text-center">
+                            <div class="col">Nike Spor</div>
+                            <div class="col">Aykkabı</div>
+                        </div>
+                        <div class="col text-center mt-2">
+                            <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 mt-2">
+            <div class="rowrow-cols-fluid-2 p-2">
+                <div class="col border-bottom mb-3">
+                    <div class="col text-center border-bottom bordered">
+                        <h5>Kategoriler</h5>
+                    </div>
+                    <div class="col mt-1 pe-2 text-end">
+                        <ul style="list-style:none">
+                            @foreach (var item in ViewBag.category as List<string>)
+                            {
+                                <li><a href="#" class="text-decoration-none text-dark">@item</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="col border-bottom ">
+                    <div class="col text-center border-bottom bordered">
+                        <h5>Markalar</h5>
+                    </div>
+                    <div class="col mt-1 pe-2 text-end">
+                        <ul style="list-style:none">
+                            @foreach (var item in Model)
+                            {
+                                <li><a href="#" class="text-decoration-none text-dark">@item.Brand</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
