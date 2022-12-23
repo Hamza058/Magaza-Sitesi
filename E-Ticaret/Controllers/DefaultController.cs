@@ -15,14 +15,23 @@ namespace E_Ticaret.Controllers
     {
         ProductManager pm = new ProductManager(new EFProductDal());
         ProductCategoryManager pcm = new ProductCategoryManager(new EFProductCategoryDal());
-        Context c = new Context(); 
+        BrandManager bm = new BrandManager(new EFBrandDal());
+        ImageManager im = new ImageManager(new EFImageDal());
+
         public IActionResult Index()
         {
-            var values = pm.TGetList();
-            ViewBag.category = new List<string>();
-            foreach (var item in pcm.TGetList())
+            var values = im.GetProducts();
+            var procate = pcm.TGetList();
+            ViewBag.category = procate;
+            //ViewBag.category = new List<string>();
+            ViewBag.brand = new List<string>();
+            //foreach (var item in pcm.TGetList())
+            //{
+            //    ViewBag.category.Add(item.ProductCategoryName);
+            //}
+            foreach (var item in bm.TGetList())
             {
-                ViewBag.category.Add(item.ProductCategoryName);
+                ViewBag.brand.Add(item.BrandName);
             }
             return View(values);
         }

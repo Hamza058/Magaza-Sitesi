@@ -12,13 +12,16 @@ namespace EntityLayer.Concrete
         [Key]
         public int ProductId { get; set; }
         public string ProductName { get; set; }
-        public string ProductImage { get; set; }
+        public int BrandId { get; set; }
         public int Price { get; set; }
         public int Stock { get; set; }
         public int ProductCategoryId { get; set; }
         public bool ProductStatus { get; set; }
-        public int BrandId { get; set; }
+
         public ICollection<Comment> Comments { get; set; }
         public ICollection<Image> Images { get; set; }
+
+        public ProductCategory ProductCategory { get; set; }
+        public Brand Brand { get; set; }
     }
 }

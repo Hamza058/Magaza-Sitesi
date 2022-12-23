@@ -8,15 +8,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 namespace DataAccessLayer.EntityFramework
 {
-    public class EFProductDal : GenericRepository<Product>, IProductDal
+    public class EFImageDal : GenericRepository<Image>, IImageDal
     {
-        public List<Product> GetListWithBrand()
+        public List<Image> GetListWithProduct()
         {
-            using (var c = new Context())
+            using(var c=new Context())
             {
-                return c.Products.Include(x => x.Brand).ToList();
+                return c.Images.Include(x => x.Product)
+                    .Include(x=>x.Product.Brand)
+                    .Include(x=>x.Product.ProductCategory).ToList();
+
             }
         }
     }

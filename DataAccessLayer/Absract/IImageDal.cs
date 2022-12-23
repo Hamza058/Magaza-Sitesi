@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Absract
 {
-    public interface IProductDal: IGenericDal<Product>
+    public interface IImageDal: IGenericDal<Image>
     {
-        List<Product> GetListWithBrand();
+        List<Image> GetListWithProduct();
     }
 }

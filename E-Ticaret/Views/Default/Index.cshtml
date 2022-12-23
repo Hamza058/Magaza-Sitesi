@@ -1,6 +1,5 @@
 ﻿@using EntityLayer.Concrete
-@model List<Product>
-
+@model List<Image>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -49,15 +48,15 @@
                         <div class="row-fluid p-2">
                             <div class="col mb-1 border border-dark">
                                 <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
-                                    <img src="~/img/@item.ProductImage" width="100%" />
+                                    <img src="~/img/@item.ImageUrl" width="100%" />
                                 </a>
                             </div>
                             <div class="col text-center pt-2 text-danger">
-                                <p class="border-bottom bordered pb-1">@item.Price TL</p>
+                                <p class="border-bottom bordered pb-1">@item.Product.Price TL</p>
                             </div>
                             <div class="col text-center">
-                                <div class="col "><b>Marka</b> @item.ProductName.Split(" ")[0]</div>
-                                <div class="col">@item.ProductName.Split(" ")[1]</div>
+                                <div class="col "><b>@item.Product.Brand.BrandName</b> @item.Product.ProductName</div>
+                                <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>
                             <div class="col text-center mt-2">
                                 <button type="submit" class="btn btn-success">Sepete Ekle</button>
@@ -75,9 +74,9 @@
                     </div>
                     <div class="col mt-1 pe-2 text-end">
                         <ul style="list-style:none">
-                            @foreach (var item in ViewBag.category as List<string>)
+                            @foreach (var item in ViewBag.category as List<ProductCategory>)
                             {
-                                <li><a href="#" class="text-decoration-none text-dark">@item</a></li>
+                                <li><a href="#" class="text-decoration-none text-dark">@item.ProductCategoryName</a></li>
                             }
                         </ul>
                     </div>
@@ -86,14 +85,14 @@
                     <div class="col text-center border-bottom bordered">
                         <h5>Markalar</h5>
                     </div>
-                    @*<div class="col mt-1 pe-2 text-end">
+                    <div class="col mt-1 pe-2 text-end">
                         <ul style="list-style:none">
                             @foreach (var item in ViewBag.brand as List<string>)
                             {
                                 <li><a href="#" class="text-decoration-none text-dark">@item</a></li>
                             }
                         </ul>
-                    </div>*@
+                    </div>
                 </div>
             </div>
         </div>

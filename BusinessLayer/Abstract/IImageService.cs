@@ -5,10 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataAccessLayer.Absract
+namespace BusinessLayer.Abstract
 {
-    public interface IProductDal: IGenericDal<Product>
+    public interface IImageService : IGenericService<Image>
     {
-        List<Product> GetListWithBrand();
+        List<Image> GetProducts();
     }
 }
