@@ -39,13 +39,13 @@
 <br />
 <div class="container-fluid">
     <div class="row">
-        <h2 class="text-center">Ürünler</h2>
         <div class="col-9 ps-3">
+            <h2 class="text-center">Ürünler</h2>
             <div class="row mb-2">
                 @foreach (var item in Model)
                 {
                     <div class="col-md-4 mt-1 border bordered">
-                        <div class="row-fluid p-2">
+                        <div class="row-cols-fluid-4 p-2">
                             <div class="col mb-1 border border-dark">
                                 <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
                                     <img src="~/img/@item.ImageUrl" width="100%" />
@@ -87,9 +87,9 @@
                     </div>
                     <div class="col mt-1 pe-2 text-end">
                         <ul style="list-style:none">
-                            @foreach (var item in ViewBag.brand as List<string>)
+                            @foreach (var item in ViewBag.brand as List<Brand>)
                             {
-                                <li><a href="#" class="text-decoration-none text-dark">@item</a></li>
+                                <li><a href="#" class="text-decoration-none text-dark">@item.BrandName</a></li>
                             }
                         </ul>
                     </div>

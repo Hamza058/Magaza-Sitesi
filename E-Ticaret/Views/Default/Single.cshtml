@@ -1,4 +1,6 @@
-﻿@model EntityLayer.Concrete.Product
+﻿@using EntityLayer.Concrete 
+@model EntityLayer.Concrete.Image
+
 @{
     ViewData["Title"] = "Single";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
@@ -8,23 +10,19 @@
         <div class="col p-3">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0"
-                            class="active bg-dark" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                            class="bg-dark" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                            class="bg-dark" aria-label="Slide 3"></button>
+                    @for (int i = 0; i < ViewBag.imgs.Count; i++)
+                    {
+                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i"
+                                class="active bg-dark" aria-current="true" aria-label="Slide @i"></button>
+                    }
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="~/img/a1.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="~/img/a2.png" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="~/img/a3.png" class="d-block w-100" alt="...">
-                    </div>
+                    @foreach (var item in ViewBag.imgs as List<Image>)
+                    {
+                        <div class="carousel-item active">
+                            <img src="~/img/@item.ImageUrl" class="d-block w-100" alt="...">
+                        </div>
+                    }
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
                         data-bs-slide="prev">
@@ -42,12 +40,12 @@
             <div class="row-fluid-cols-6">
                 <div class="col">
                     <div class="row">
-                        <div class="col-auto"><p class="fs-1 fw-bold p-0">Marka</p></div>
-                        <div class="col-auto"><p class="fs-2 pt-2"> @Model.ProductName</p></div>
+                        <div class="col-auto"><p class="fs-1 fw-bold p-0">@Model.Product.Brand.BrandName</p></div>
+                        <div class="col-auto"><p class="fs-2 pt-2"> @Model.Product.ProductName</p></div>
                     </div>
                 </div>
-                <div class="col"><text class="text-danger">Satıcı: </text>Marka</div>
-                <div class="col mt-1"><b>@Model.Price TL</b></div>
+                <div class="col"><text class="text-danger">Satıcı: </text>@Model.Product.Brand.BrandName</div>
+                <div class="col mt-1"><b>@Model.Product.Price TL</b></div>
                 <div class="col mt-3">
                     <div class="row-fluid-cols-2">
                         <div class="col">

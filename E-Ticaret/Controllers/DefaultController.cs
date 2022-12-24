@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using E_Ticaret.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccessLayer.Concrete;
+using System.Diagnostics;
 
 namespace E_Ticaret.Controllers
 {
@@ -20,22 +21,13 @@ namespace E_Ticaret.Controllers
 
         public IActionResult Index()
         {
-            var values = im.GetProducts();
-            var procate = pcm.TGetList();
-            ViewBag.category = procate;
-            //ViewBag.category = new List<string>();
-            ViewBag.brand = new List<string>();
-            //foreach (var item in pcm.TGetList())
-            //{
-            //    ViewBag.category.Add(item.ProductCategoryName);
-            //}
-            foreach (var item in bm.TGetList())
-            {
-                ViewBag.brand.Add(item.BrandName);
-            }
+            var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1')).ToList();
+            ViewBag.category = pcm.TGetList();
+            ViewBag.brand = bm.TGetList();
+
             return View(values);
         }
-        public IActionResult Single(int id = 1)
+        public IActionResult Single(int id)
         {
             ViewBag.Colors = new SelectList(new List<Color>()
             {
@@ -54,7 +46,8 @@ namespace E_Ticaret.Controllers
                 new(){Data="45",Value="45"},
             }, "Value", "Data");
 
-            var value = pm.TGetByID(id);
+            var value = im.GetByIDProduct(id);
+            ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
             return View(value);
         }
     }

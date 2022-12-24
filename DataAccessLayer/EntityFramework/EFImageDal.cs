@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -20,6 +21,17 @@ namespace DataAccessLayer.EntityFramework
                 return c.Images.Include(x => x.Product)
                     .Include(x=>x.Product.Brand)
                     .Include(x=>x.Product.ProductCategory).ToList();
+
+            }
+        }
+
+        public Image GetWithProduct(Expression<Func<Image, bool>> filter)
+        {
+            using (var c = new Context())
+            {
+                return c.Images.Include(x => x.Product)
+                    .Include(x => x.Product.Brand)
+                    .Include(x => x.Product.ProductCategory).First(filter);
 
             }
         }

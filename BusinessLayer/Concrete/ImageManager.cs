@@ -18,6 +18,11 @@ namespace BusinessLayer.Concrete
             _imageDal = imageDal;
         }
 
+        public Image GetByIDProduct(int id)
+        {
+            return _imageDal.GetWithProduct(x => x.ProductId == id);
+        }
+
         public List<Image> GetProducts()
         {
             return _imageDal.GetListWithProduct();
