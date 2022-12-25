@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+html, body {
+    height: 100%;
+    background-image: url("../img/background.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.textBox {
+    font-family: Poppins-Regular;
+    font-size: 18px;
+    border-style: none;
+    border-bottom: groove;
+    outline: none;
+    width: 50%;
+    color: #555555;
+    background: transparent;
+    padding-left: 30px;
+}
+h1{
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: white;
+}
+.header {
+    padding: 70px 15px 74px 15px;
+}
+.mid {
+    padding-left: 25%;
+}
+
+.top {
+    margin-top: 10%;
+}
+
+.boxShadow {
+    box-shadow: 15px 15px 25px 5px #b6b6b6;
+}
+
+.img {
+    border-top-right-radius: 10%;
+    border-top-left-radius: 10%;
+    opacity: 0.8;
+    width: 100%;
+}
+
+.bor {
+    border-top-left-radius: 10%;
+    border-top-right-radius: 10%;
+    background-color: rgba(88, 160, 255, 0.7);
+}
+
+.main {
+    background-color:white;
+    text-align: center;
+}
+
+.btnloc {
+    width: 100px;
+    margin-left: 35%;
+}
+
+i {
+    position: absolute;
+}
+
+p {
+    font-family: cursive;
+    opacity:60%;
+    margin-left: 38%;
+}
