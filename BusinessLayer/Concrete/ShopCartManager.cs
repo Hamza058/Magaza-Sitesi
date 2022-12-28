@@ -25,7 +25,7 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(ShopCart t)
         {
-            _shopCartDal.Delete(t);
+            _shopCartDal.DeleteSql(t);
         }
 
         public ShopCart TGetByID(int id)

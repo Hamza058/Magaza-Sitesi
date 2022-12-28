@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace E_Ticaret.Controllers
 {
+    [Authorize]
     public class ShopCartController : Controller
     {
         ShopCartManager sm = new ShopCartManager(new EFShopCartDal());
@@ -38,6 +40,12 @@ namespace E_Ticaret.Controllers
             };
             sm.TAdd(shopCart);
             return RedirectToAction("Index","Default");
+        }
+        public IActionResult DeleteShop(int id)
+        {
+            var value=sm.TGetByID(id);
+            sm.TDelete(value);
+            return RedirectToAction("Index","ShopCart");
         }
     }
 }

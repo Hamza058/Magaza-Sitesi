@@ -25,6 +25,12 @@ namespace DataAccessLayer.Repository
             c.SaveChanges();
         }
 
+        public void DeleteSql(T t)
+        {
+            _object.Remove(t);
+            c.SaveChanges();
+        }
+
         public T Get(Expression<Func<T, bool>> filter)
         {
             return _object.SingleOrDefault(filter);

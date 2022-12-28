@@ -14,5 +14,7 @@ namespace DataAccessLayer.Absract
         void Update(T t);
         List<T> GetList();
         T Get(Expression<Func<T, bool>> filter);
+
+        void DeleteSql(T t);
     }
 }
