@@ -64,9 +64,9 @@ namespace E_Ticaret
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
-            app.UseAuthentication();
-
             app.UseSession();
+
+            app.UseAuthentication();
 
             app.UseRouting();
 

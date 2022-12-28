@@ -20,5 +20,7 @@ namespace EntityLayer.Concrete
         public bool UserStatus { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<ShopCart> ShopCart { get; set; }
+
     }
 }

@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccessLayer.Concrete;
 using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace E_Ticaret.Controllers
 {
@@ -52,11 +54,6 @@ namespace E_Ticaret.Controllers
             var value = im.GetByIDProduct(id);
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
             return View(value);
-        }
-
-        public IActionResult ShoppingCart()
-        {
-            return View();
         }
     }
 }
