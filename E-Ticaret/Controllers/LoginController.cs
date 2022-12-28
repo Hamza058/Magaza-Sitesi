@@ -32,6 +32,7 @@ namespace E_Ticaret.Controllers
 
             if (value != null)
             {
+                HttpContext.Session.SetString("userMail", user.UserMail);
                 return RedirectToAction("Index", "Default");
             }
             ViewBag.Message = "Hatalı Kullancı Adı veya Şifre";

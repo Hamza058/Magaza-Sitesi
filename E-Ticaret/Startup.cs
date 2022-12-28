@@ -27,6 +27,8 @@ namespace E_Ticaret
         {
             services.AddControllersWithViews();
 
+            services.AddSession();
+
             services.AddMvc(config =>
             {
                 var policy = new AuthorizationPolicyBuilder()
@@ -51,6 +53,8 @@ namespace E_Ticaret
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
 
