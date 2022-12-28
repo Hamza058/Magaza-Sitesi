@@ -66,10 +66,10 @@ namespace E_Ticaret.Controllers
             }
         }
 
-        //public IActionResult Logout()
-        //{
-        //    HttpContext.Session.Remove("UserMail");
-        //    return RedirectToAction("Index", "Default");
-        //}
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Remove("UserMail");
+            return RedirectToAction("Index", "Default");
+        }
     }
 }
