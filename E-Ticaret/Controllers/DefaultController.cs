@@ -9,6 +9,7 @@ using E_Ticaret.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using DataAccessLayer.Concrete;
 using System.Diagnostics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace E_Ticaret.Controllers
 {
@@ -18,7 +19,8 @@ namespace E_Ticaret.Controllers
         ProductCategoryManager pcm = new ProductCategoryManager(new EFProductCategoryDal());
         BrandManager bm = new BrandManager(new EFBrandDal());
         ImageManager im = new ImageManager(new EFImageDal());
-
+        
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1')).ToList();
@@ -27,6 +29,7 @@ namespace E_Ticaret.Controllers
 
             return View(values);
         }
+        [AllowAnonymous]
         public IActionResult Single(int id)
         {
             ViewBag.Colors = new SelectList(new List<Color>()
@@ -49,6 +52,11 @@ namespace E_Ticaret.Controllers
             var value = im.GetByIDProduct(id);
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
             return View(value);
+        }
+
+        public IActionResult ShoppingCart()
+        {
+            return View();
         }
     }
 }
