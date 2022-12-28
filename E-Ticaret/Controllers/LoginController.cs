@@ -32,7 +32,7 @@ namespace E_Ticaret.Controllers
 
             if (value != null)
             {
-                HttpContext.Session.SetString("userMail", user.UserMail);
+                HttpContext.Session.SetString("UserMail", user.UserMail);
                 return RedirectToAction("Index", "Default");
             }
             ViewBag.Message = "Hatalı Kullancı Adı veya Şifre";
@@ -65,5 +65,11 @@ namespace E_Ticaret.Controllers
                 return View();
             }
         }
+
+        //public IActionResult Logout()
+        //{
+        //    HttpContext.Session.Remove("UserMail");
+        //    return RedirectToAction("Index", "Default");
+        //}
     }
 }

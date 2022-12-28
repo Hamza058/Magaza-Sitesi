@@ -1,4 +1,5 @@
-﻿
+﻿@using Microsoft.AspNetCore.Http;
+
 @{
     Layout = null;
 }
@@ -58,7 +59,15 @@
                 <div class="ms-auto">
                     <ul class="navbar-nav">
                         <li class="nav-item me-3">
-                            <a class="btn btn-primary" aria-current="page" href="/Login/Index"><i class="fa fa-user-o"></i> Profil</a>
+                            <a class="btn btn-primary" aria-current="page" href="/Login/Index">
+                                <i class="fa fa-user-o"></i>
+                                @{
+                                    if (@Context.Session.GetString("UserMail") == null)
+                                        @Html.Label("Profil")
+                                    else
+                                        @Context.Session.GetString("UserMail");
+                                }
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a class="btn btn-secondary" aria-current="page" href="/Default/ShoppingCart"><i class="fa fa-shopping-cart"></i> Sepet</a>
