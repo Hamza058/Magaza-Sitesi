@@ -68,28 +68,28 @@
         </div>
         <div class="col-3 mt-2">
             <div class="rowrow-cols-fluid-2 p-2">
-                <div class="col border-bottom mb-3">
+                <div class="col border-bottom dropdown mb-3">
                     <div class="col text-center border-bottom bordered">
-                        <h5>Kategoriler</h5>
-                    </div>
-                    <div class="col mt-1 pe-2 text-end">
-                        <ul style="list-style:none">
+                        <a class="dropdown-toggle text-decoration-none text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <h5>Kategoriler</h5>
+                        </a>
+                        <ul class="dropdown-menu" style="list-style:none">
                             @foreach (var item in ViewBag.category as List<ProductCategory>)
                             {
-                                <li><a href="#" class="text-decoration-none text-dark">@item.ProductCategoryName</a></li>
+                                <li><a class="dropdown-item" href="#">@item.ProductCategoryName</a></li>
                             }
                         </ul>
                     </div>
                 </div>
-                <div class="col border-bottom ">
+                <div class="col border-bottom dropdown">
                     <div class="col text-center border-bottom bordered">
-                        <h5>Markalar</h5>
-                    </div>
-                    <div class="col mt-1 pe-2 text-end">
-                        <ul style="list-style:none">
+                        <a class="dropdown-toggle text-decoration-none text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <h5>Markalar</h5>
+                        </a>
+                        <ul class="dropdown-menu" style="list-style:none">
                             @foreach (var item in ViewBag.brand as List<Brand>)
                             {
-                                <li><a href="#" class="text-decoration-none text-dark">@item.BrandName</a></li>
+                                <li><a class="dropdown-item" href="#">@item.BrandName</a></li>
                             }
                         </ul>
                     </div>
