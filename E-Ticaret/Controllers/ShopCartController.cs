@@ -26,15 +26,15 @@ namespace E_Ticaret.Controllers
             return View(shop);
         }
 
-        public IActionResult AddShop(int id)
+        public IActionResult AddShop(int id, string color, string size)
         {
             var product = pm.TGetByID(id);
             var user = um.TGetList().Where(x => x.UserMail == HttpContext.Session.GetString("UserMail")).FirstOrDefault().UserId;
             ShopCart shopCart = new ShopCart()
             {
                 ShopCartProductName = product.Brand + " " + product.ProductName,
-                ShopCartProductColor = "Kırmızı",
-                ShopCartProductSize = "42",
+                ShopCartProductColor = color,
+                ShopCartProductSize = size,
                 ShopCartProductPrice = product.Price,
                 UserId = user
             };

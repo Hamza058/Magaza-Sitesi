@@ -59,7 +59,9 @@
                                 <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>
                             <div class="col text-center mt-2">
-                                <button type="submit" class="btn btn-success">Sepete Ekle</button>
+                                <vc:size-and-color id="@item.ProductId"></vc:size-and-color>
+                                @*@await Component.InvokeAsync("SizeAndColor")*@
+                                @*<button type="submit" class="btn btn-success">Sepete Ekle</button>*@
                             </div>
                         </div>
                     </div>

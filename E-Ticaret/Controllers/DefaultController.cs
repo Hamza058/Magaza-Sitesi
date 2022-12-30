@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
+
 namespace E_Ticaret.Controllers
 {
     public class DefaultController : Controller

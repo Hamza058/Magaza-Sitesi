@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="col">
-            <form asp-controller="ShopCart" asp-action="AddShop" asp-route-id="@Model.ProductId" method="post">
+            <form asp-controller="ShopCart" asp-action="AddShop" asp-route-id="@Model.ProductId" asp-route-color="Color" asp-route-size="Size" method="post">
                 <div class="row-fluid-cols-6">
                     <div class="col">
                         <div class="row">
@@ -53,7 +53,7 @@
                                 <h6>Renkler</h6>
                             </div>
                             <div class="col">
-                                <select class="form-select" asp-items="@ViewBag.Colors"></select>
+                                <select name="Color" class="form-select" asp-items="@ViewBag.Colors"></select>
                             </div>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                                 <h6>Numaralar</h6>
                             </div>
                             <div class="col">
-                                <select class="form-select" asp-items="@ViewBag.Numbers"></select>
+                                <select name="Size" class="form-select" asp-items="@ViewBag.Numbers"></select>
                             </div>
                         </div>
                     </div>

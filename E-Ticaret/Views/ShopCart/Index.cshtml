@@ -7,14 +7,16 @@
 }
 
 <div class="container">
-    <table class="table">
-        <tr>
-            <th>Ürün Adı</th>
-            <th>Renk</th>
-            <th>Beden</th>
-            <th>Fiyat</th>
-            <th></th>
-        </tr>
+    <table class="table table-striped table-hover">
+        <thead class="bg-primary text-light">
+            <tr>
+                <th>Ürün Adı</th>
+                <th>Renk</th>
+                <th>Beden</th>
+                <th>Fiyat</th>
+                <th></th>
+            </tr>
+        </thead>
         @foreach (var item in Model)
         {
             <tr>
