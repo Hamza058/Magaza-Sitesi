@@ -94,38 +94,24 @@
                         </ul>
                     </div>
                     <div class="col border m-2">
-                        <div class="row">
-                            <div class="col-md-2 pt-2 text-center">
-                                <img src="./img/face3.png" class="rounded-circle border border-dark" width="80px">
-                            </div>
-                            <div class="col-md-10">
-                                <div class="row-fluid-cols-2">
-                                    <div class="col"><b>Name Surname</b></div>
-                                    <div class="col">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Veritatis commodi, doloremque suscipit enim, dolorum ea necessitatibus
-                                        veniam quia, sapiente officiis repudiandae eveniet consequuntur! Beatae
-                                        laboriosam eligendi accusantium nesciunt quibusdam quae!
-                                    </div>
-                                </div>
+                        <div class="row-fluid-cols-2 p-2">
+                            <div class="col"><b>Name Surname</b></div>
+                            <div class="col">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Veritatis commodi, doloremque suscipit enim, dolorum ea necessitatibus
+                                veniam quia, sapiente officiis repudiandae eveniet consequuntur! Beatae
+                                laboriosam eligendi accusantium nesciunt quibusdam quae!
                             </div>
                         </div>
                     </div>
                     <div class="col border m-2">
-                        <div class="row">
-                            <div class="col-md-2 pt-2 text-center">
-                                <img src="./img/face3.png" class="rounded-circle border border-dark" width="80px">
-                            </div>
-                            <div class="col-md-10">
-                                <div class="row-fluid-cols-2">
-                                    <div class="col"><b>Name Surname</b></div>
-                                    <div class="col">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Veritatis commodi, doloremque suscipit enim, dolorum ea necessitatibus
-                                        veniam quia, sapiente officiis repudiandae eveniet consequuntur! Beatae
-                                        laboriosam eligendi accusantium nesciunt quibusdam quae!
-                                    </div>
-                                </div>
+                        <div class="row-fluid-cols-2 p-2">
+                            <div class="col"><b>Name Surname</b></div>
+                            <div class="col">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                                Veritatis commodi, doloremque suscipit enim, dolorum ea necessitatibus
+                                veniam quia, sapiente officiis repudiandae eveniet consequuntur! Beatae
+                                laboriosam eligendi accusantium nesciunt quibusdam quae!
                             </div>
                         </div>
                     </div>
@@ -136,95 +122,26 @@
     <div class="col mt-3 p-3">
         <h5>Diğer Ürünler</h5>
         <div class="row">
-            <div class="col me-1 border">
-                <div class="row-fluid p-2">
-                    <div class="col mb-1 border border-dark">
-                        <img src="./img/a1.png" width="100%" />
-                    </div>
-                    <div class="col text-center pt-2 text-danger">
-                        <p class="border-bottom bordered pb-1">100 TL</p>
-                    </div>
-                    <div class="col text-center">
-                        <div class="col ">Hummel Spor</div>
-                        <div class="col">Aykkabı</div>
-                    </div>
-                    <div class="col text-center mt-2">
-                        <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col me-1 border">
-                <div class="row-fluid p-2">
-                    <div class="col mb-1 border border-dark">
-                        <img src="./img/a2.png" width="100%" />
-                    </div>
-                    <div class="col text-center pt-2 text-danger">
-                        <p class="border-bottom bordered pb-1">200 TL</p>
-                    </div>
-                    <div class="col text-center">
-                        <div class="col ">Adidas Spor</div>
-                        <div class="col">Aykkabı</div>
-                    </div>
-                    <div class="col text-center mt-2">
-                        <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col me-1 border">
-                <div class="row-fluid p-2">
-                    <div class="col mb-1 border border-dark">
-                        <img src="./img/a3.png" width="100%" />
-                    </div>
-                    <div class="col text-center pt-2 text-danger">
-                        <p class="border-bottom bordered pb-1">300 TL</p>
-                    </div>
-                    <div class="col text-center">
-                        <div class="col ">Nike Spor</div>
-                        <div class="col">Aykkabı</div>
-                    </div>
-                    <div class="col text-center mt-2">
-                        <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col me-1 border">
-                <div class="row-fluid p-2">
-                    <div class="col mb-1 border border-dark">
-                        <img src="./img/a1.png" width="100%" />
-                    </div>
-                    <div class="col text-center pt-2 text-danger">
-                        <p class="border-bottom bordered pb-1">100 TL</p>
-                    </div>
-                    <div class="col text-center">
-                        <div class="row-fluid-cols-2">
-                            <div class="col ">Hummel Spor</div>
-                            <div class="col">Aykkabı</div>
+            @foreach (var item in ViewBag.products as List<Image>)
+            {
+                <div class="col me-1 border">
+                    <div class="row-fluid p-2">
+                        <div class="col mb-1 border border-dark">
+                            <img src="~/img/@item.ImageUrl" width="100%" />
+                        </div>
+                        <div class="col text-center pt-2 text-danger">
+                            <p class="border-bottom bordered pb-1">@item.Product.Price TL</p>
+                        </div>
+                        <div class="col text-center">
+                            <div class="col "><b>@item.Product.Brand.BrandName</b> @item.Product.ProductName</div>
+                            <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
+                        </div>
+                        <div class="col text-center mt-2">
+                            <vc:size-and-color id="@item.ProductId"></vc:size-and-color>
                         </div>
                     </div>
-                    <div class="col text-center mt-2">
-                        <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                    </div>
                 </div>
-            </div>
-            <div class="col me-1 border">
-                <div class="row-fluid p-2">
-                    <div class="col mb-1 border border-dark">
-                        <img src="./img/a2.png" width="100%" />
-                    </div>
-                    <div class="col text-center pt-2 text-danger">
-                        <p class="border-bottom bordered pb-1">200 TL</p>
-                    </div>
-                    <div class="col text-center">
-                        <div class="row-fluid-cols-2">
-                            <div class="col ">Adidas Spor</div>
-                            <div class="col">Aykkabı</div>
-                        </div>
-                    </div>
-                    <div class="col text-center mt-2">
-                        <button type="submit" class="btn btn-success">Sepete Ekle</button>
-                    </div>
-                </div>
-            </div>
+            }
         </div>
     </div>
 </div>

@@ -54,6 +54,9 @@ namespace E_Ticaret.Controllers
 
             var value = im.GetByIDProduct(id);
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
+
+            ViewBag.products = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && x.Product.ProductCategory.ProductCategoryName==value.Product.ProductCategory.ProductCategoryName).ToList();
+
             return View(value);
         }
     }
