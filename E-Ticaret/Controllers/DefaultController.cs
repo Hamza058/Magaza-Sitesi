@@ -16,6 +16,7 @@ using System.Security.Claims;
 
 namespace E_Ticaret.Controllers
 {
+    [AllowAnonymous]
     public class DefaultController : Controller
     {
         ProductManager pm = new ProductManager(new EFProductDal());
@@ -23,7 +24,6 @@ namespace E_Ticaret.Controllers
         BrandManager bm = new BrandManager(new EFBrandDal());
         ImageManager im = new ImageManager(new EFImageDal());
         
-        [AllowAnonymous]
         public IActionResult Index()
         {
             var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1')).ToList();
@@ -32,7 +32,6 @@ namespace E_Ticaret.Controllers
 
             return View(values);
         }
-        [AllowAnonymous]
         public IActionResult Single(int id)
         {
             ViewBag.Colors = new SelectList(new List<Color>()
@@ -55,7 +54,7 @@ namespace E_Ticaret.Controllers
             var value = im.GetByIDProduct(id);
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
 
-            ViewBag.products = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && x.Product.ProductCategory.ProductCategoryName==value.Product.ProductCategory.ProductCategoryName).ToList();
+            ViewBag.products = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && x.Product.ProductCategory.ProductCategoryName == value.Product.ProductCategory.ProductCategoryName && x.ProductId != value.ProductId).ToList();
 
             return View(value);
         }

@@ -33,7 +33,7 @@ namespace E_Ticaret.Views.Shared.ViewComponents
             }, "Value", "Data");
             ViewBag.id = id;
 
-            return View("Default");
+            return View();
         }
     }
 }

@@ -9,5 +9,6 @@ namespace DataAccessLayer.Absract
 {
     public interface ICommentDal: IGenericDal<Comment>
     {
+        List<Comment> GetListWithUser();
     }
 }

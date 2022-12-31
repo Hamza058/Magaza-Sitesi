@@ -75,6 +75,11 @@ namespace E_Ticaret.Controllers
                 MailAddress m = new MailAddress(user.UserMail);
                 if (m.Host != null)
                 {
+                    user.UserName.Trim();
+                    user.UserSurname.Trim();
+                    user.UserMail.Trim();
+                    user.UserPassword.Trim();
+                    user.UserPhone.Trim();
                     user.UserStatus = true;
                     um.TAdd(user);
                     return RedirectToAction("Index", "Login");

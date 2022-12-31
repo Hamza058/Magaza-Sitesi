@@ -47,9 +47,9 @@
                     <div class="col-md-4 mt-1 border bordered">
                         <div class="row-cols-fluid-4 p-2">
                             <div class="col mb-1 border border-dark">
-                                <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
+                                <div><a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
                                     <img src="~/img/@item.ImageUrl" width="100%" />
-                                </a>
+                                </a></div>
                             </div>
                             <div class="col text-center pt-2 text-danger">
                                 <p class="border-bottom bordered pb-1">@item.Product.Price TL</p>
@@ -60,8 +60,6 @@
                             </div>
                             <div class="col text-center mt-2">
                                 <vc:size-and-color id="@item.ProductId"></vc:size-and-color>
-                                @*@await Component.InvokeAsync("SizeAndColor")*@
-                                @*<button type="submit" class="btn btn-success">Sepete Ekle</button>*@
                             </div>
                         </div>
                     </div>

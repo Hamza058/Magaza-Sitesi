@@ -74,50 +74,24 @@
             </form>
         </div>
     </div>
-    <p class="fw-light mt-3">Ürün Açıklama ve yorum ayrı ayrı gösterilecek</p>
-    <div class="col mt-3 border border-dark">
-        <div class="container-fluid">
-            <div class="row-fluid-cols-2">
-                <div class="row text-center">
-                    <div class="col bg-secondary text-light border-3 border-dark border-end border-bottom">
-                        Ürün
-                        Açıklama
-                    </div>
-                    <div class="col bg-secondary text-light border-3 border-dark border-bottom">Yorumlar</div>
-                </div>
-                <div class="row-fluid-cols-2">
-                    <div class="col">
-                        <ul class="nav flex-column">
-                            <li>Lorem ipsum dolor sit amet.</li>
-                            <li>Lorem ipsum dolor sit.</li>
-                            <li>Lorem, ipsum dolor.</li>
-                        </ul>
-                    </div>
-                    <div class="col border m-2">
-                        <div class="row-fluid-cols-2 p-2">
-                            <div class="col"><b>Name Surname</b></div>
-                            <div class="col">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veritatis commodi, doloremque suscipit enim, dolorum ea necessitatibus
-                                veniam quia, sapiente officiis repudiandae eveniet consequuntur! Beatae
-                                laboriosam eligendi accusantium nesciunt quibusdam quae!
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col border m-2">
-                        <div class="row-fluid-cols-2 p-2">
-                            <div class="col"><b>Name Surname</b></div>
-                            <div class="col">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                Veritatis commodi, doloremque suscipit enim, dolorum ea necessitatibus
-                                veniam quia, sapiente officiis repudiandae eveniet consequuntur! Beatae
-                                laboriosam eligendi accusantium nesciunt quibusdam quae!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="col mt-3">
+        <table class="table table-bordered" width="100%">
+            <thead class="bg-secondary text-center">
+                <tr style="width:100%">
+                    <td width="50%"><a href="/Comment/ProductInfo" class="text-decoration-none text-light" target="info">Ürün Açıklama</a></td>
+                    <td width="50%">
+                        <a href="/Comment/Index/@Model.ProductId" class="text-decoration-none text-light" target="info">Yorumlar</a>
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td colspan="2">
+                        <iframe src="/Comment/ProductInfo" name="info" width="100%"></iframe>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     <div class="col mt-3 p-3">
         <h5>Diğer Ürünler</h5>
