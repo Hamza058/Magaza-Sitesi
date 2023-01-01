@@ -23,6 +23,11 @@
           integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
+    <style>
+        input[type="text"]:focus:invalid {
+            border-bottom-color: red;
+        }
+    </style>
 </head>
 
 <body>
@@ -37,11 +42,11 @@
                         <div class="col pt-3 main">
                             <div class="col pb-4">
                                 <i class="fa fa-user-o me-1" style="font-size: 23px;"></i>
-                                <input asp-for="UserName" class="textBox" placeholder="Adınız" required>
+                                <input asp-for="UserName" class="textBox" placeholder="Adınız" pattern="[A-Za-z]*" title="Sadece Harf Giriniz!!!" required>
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-user-o me-1" style="font-size: 23px;"></i>
-                                <input asp-for="UserSurname" class="textBox" placeholder="Soyadınız" required>
+                                <input asp-for="UserSurname" class="textBox" placeholder="Soyadınız" pattern="[A-Za-z]*" title="Sadece Harf Giriniz!!!" required>
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-envelope-o me-1" style="font-size: 23px;"></i>
@@ -53,11 +58,11 @@
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-phone me-1" style="font-size: 25px;"></i>
-                                <input asp-for="UserPhone" class="textBox" placeholder="Telefon" required>
+                                <input asp-for="UserPhone" class="textBox" placeholder="Telefon" pattern="^[0-9]*$" maxlength="10"  title="Sadece Rakam Giriniz!!!" required>
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-map-o me-1" style="font-size: 23px;"></i>
-                                <textarea asp-for="UserAdress" class="textBox" placeholder="Adres"></textarea>
+                                <textarea asp-for="UserAdress" class="textBox" placeholder="Adres" required></textarea>
                             </div>
                             <div class="col-auto pb-4">
                                 <input type="submit" class="btnloc btn btn-success" value="Kayıt Ol"/>

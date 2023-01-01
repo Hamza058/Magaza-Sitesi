@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public string UserMail { get; set; }
         public string UserPassword { get; set; }
         public string UserPhone { get; set; }
+
         public string UserAdress { get; set; }
         public bool UserStatus { get; set; }
 
