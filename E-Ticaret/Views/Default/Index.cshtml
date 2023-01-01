@@ -44,11 +44,11 @@
             <div class="row mb-2">
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-4 mt-1 border bordered">
+                    <div class="col-md-4 mt-1 border bordered zoom">
                         <div class="row-cols-fluid-4 p-2">
                             <div class="col mb-1 border border-dark">
                                 <div><a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
-                                    <img src="~/img/@item.ImageUrl" width="100%" />
+                                    <img class="zoom" src="~/img/@item.ImageUrl" width="100%" />
                                 </a></div>
                             </div>
                             <div class="col text-center pt-2 text-danger">
