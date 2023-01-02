@@ -39,23 +39,38 @@
 <br />
 <div class="container-fluid">
     <div class="row">
-        <div class="col-9 ps-3">
+        <div class="col-9 ps-5">
             <h2 class="text-center">Ürünler</h2>
-            <div class="row mb-2">
+            <div class="row mb-1">
                 @foreach (var item in Model)
                 {
-                    <div class="col-md-4 mt-1 border bordered zoom">
+                    <div class="me-2 mt-2 border bordered zoom" style="width:32% !important">
                         <div class="row-cols-fluid-4 p-2">
                             <div class="col mb-1 border border-dark">
-                                <div><a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
-                                    <img class="zoom" src="~/img/@item.ImageUrl" width="100%" />
-                                </a></div>
+                                <div>
+                                    <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
+                                        <img src="~/img/@item.ImageUrl" width="100%" />
+                                    </a>
+                                </div>
                             </div>
                             <div class="col text-center pt-2 text-danger">
                                 <p class="border-bottom bordered pb-1">@item.Product.Price TL</p>
                             </div>
                             <div class="col text-center">
-                                <div class="col "><b>@item.Product.Brand.BrandName</b> @item.Product.ProductName</div>
+                                <div class="col ">
+                                    <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
+                                    @*@{
+            if (item.Product.Brand.BrandName.Length + item.Product.ProductName.Length < 18)
+            {
+                <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
+            }
+            else
+            {
+                <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName.Substring(0, 5)
+            }
+        }*@
+
+                                </div>
                                 <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>
                             <div class="col text-center mt-2">
@@ -76,7 +91,7 @@
                         <ul class="dropdown-menu" style="list-style:none">
                             @foreach (var item in ViewBag.category as List<ProductCategory>)
                             {
-                                <li><a class="dropdown-item" href="#">@item.ProductCategoryName</a></li>
+                                <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.ProductCategoryName">@item.ProductCategoryName</a></li>
                             }
                         </ul>
                     </div>
@@ -89,7 +104,7 @@
                         <ul class="dropdown-menu" style="list-style:none">
                             @foreach (var item in ViewBag.brand as List<Brand>)
                             {
-                                <li><a class="dropdown-item" href="#">@item.BrandName</a></li>
+                                <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.BrandName">@item.BrandName</a></li>
                             }
                         </ul>
                     </div>

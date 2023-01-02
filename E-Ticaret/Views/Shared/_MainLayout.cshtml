@@ -1,5 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Http;
-
+@using E_Ticaret.Controllers
 @{
     Layout = null;
 }
@@ -16,9 +16,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Document</title>
     <style>
-        .col-md-4:hover {
-            background-color:white;
-            transform: scale(1.2); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+        .zoom:hover {
+            box-shadow: 15px 15px 25px 5px #b6b6b6;
+            /*transform: scale(1.2);*/
         }
     </style>
 </head>
@@ -58,8 +58,8 @@
                         <a class="nav-link disabled">Disabled</a>
                     </li>
                 </ul>
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <form class="d-flex" asp-controller="Default" asp-action="Index" role="search">
+                    <input name="f" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn btn-outline-success" type="submit">Search</button>
                 </form>
                 <div class="ms-auto">
