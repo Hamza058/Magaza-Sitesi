@@ -1,6 +1,8 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,12 +14,24 @@ namespace E_Ticaret.Controllers
     public class CommentController : Controller
     {
         CommentManager cm = new CommentManager(new EFCommentDal());
+        UserManager um = new UserManager(new EFUserDal());
 
         [AllowAnonymous]
         public IActionResult Index(int id)
         {
             var comments = cm.GetWithUsers().Where(x => x.ProductId == id).ToList();
             return View(comments);
+        }
+
+        [HttpPost]
+        public IActionResult AddComment(Comment comment, int id)
+        {
+            var user = um.TGetList().Find(x => x.UserMail == HttpContext.Session.GetString("UserMail")).UserId;
+            comment.UserId = user;
+            comment.CreatedDate = DateTime.Now;
+            comment.ProductId = id;
+            cm.TAdd(comment);
+            return RedirectToAction("Index", "Comment", new { id = id });
         }
 
         [AllowAnonymous]

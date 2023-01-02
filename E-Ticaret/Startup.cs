@@ -76,7 +76,7 @@ namespace E_Ticaret
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Default}/{action=Index}/{id?}");
+                    pattern: "{controller=Default}/{action=Index}/{f?}");
             });
         }
     }

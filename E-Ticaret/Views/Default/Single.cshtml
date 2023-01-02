@@ -80,14 +80,14 @@
                 <tr style="width:100%">
                     <td width="50%"><a href="/Comment/ProductInfo" class="text-decoration-none text-light" target="info">Ürün Açıklama</a></td>
                     <td width="50%">
-                        <a href="/Comment/Index/@Model.ProductId" class="text-decoration-none text-light" target="info">Yorumlar</a>
+                        <a asp-controller="Comment" asp-action="Index" asp-route-id="@Model.ProductId" class="text-decoration-none text-light" target="info">Yorumlar</a>
                     </td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td colspan="2">
-                        <iframe src="/Comment/ProductInfo" name="info" width="100%"></iframe>
+                    <td colspan="2" height="300px">
+                        <iframe src="/Comment/ProductInfo" name="info" width="100%" height="100%"></iframe>
                     </td>
                 </tr>
             </tbody>
