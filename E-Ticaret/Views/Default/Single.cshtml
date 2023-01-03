@@ -53,7 +53,12 @@
                                 <h6>Renkler</h6>
                             </div>
                             <div class="col">
-                                <select name="Color" class="form-select" asp-items="@ViewBag.Colors"></select>
+                                <select name="Color" class="form-select">
+                                    @foreach (var item in ViewBag.Colors)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -63,7 +68,12 @@
                                 <h6>Numaralar</h6>
                             </div>
                             <div class="col">
-                                <select name="Size" class="form-select" asp-items="@ViewBag.Numbers"></select>
+                                <select name="Size" class="form-select">
+                                    @foreach (var item in ViewBag.Size)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
                             </div>
                         </div>
                     </div>

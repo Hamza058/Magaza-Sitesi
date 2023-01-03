@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EFBrandDal : GenericRepository<Brand>, IBrandDal
+    public class EFProductSizeColorDal : GenericRepository<ProductSizeColor>, IProductSizeColorDal
     {
     }
 }

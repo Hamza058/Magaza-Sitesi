@@ -19,10 +19,10 @@ namespace E_Ticaret.Controllers
     [AllowAnonymous]
     public class DefaultController : Controller
     {
-        ProductManager pm = new ProductManager(new EFProductDal());
         ProductCategoryManager pcm = new ProductCategoryManager(new EFProductCategoryDal());
         BrandManager bm = new BrandManager(new EFBrandDal());
         ImageManager im = new ImageManager(new EFImageDal());
+        ProductSizeColorManager pscm = new ProductSizeColorManager(new EFProductSizeColorDal());
 
         //[Route("[controller]/[action]/{f?}")]
         public IActionResult Index(string f="")
@@ -35,22 +35,8 @@ namespace E_Ticaret.Controllers
         }
         public IActionResult Single(int id)
         {
-            ViewBag.Colors = new SelectList(new List<Color>()
-            {
-                new(){Data="Beyaz",Value="Beyaz"},
-                new(){Data="Siyah",Value="Siyah"},
-                new(){Data="Kırmızı",Value="Kırmızı"},
-                new(){Data="Mavi",Value="Mavi"},
-            }, "Value", "Data");
-            ViewBag.Numbers = new SelectList(new List<Number>()
-            {
-                new(){Data="40",Value="40"},
-                new(){Data="41",Value="41"},
-                new(){Data="42",Value="42"},
-                new(){Data="43",Value="43"},
-                new(){Data="44",Value="44"},
-                new(){Data="45",Value="45"},
-            }, "Value", "Data");
+            ViewBag.Colors = pscm.TGetByID(id).Color.Split('-');
+            ViewBag.Size = pscm.TGetByID(id).Size.Split('-');
 
             var value = im.GetByIDProduct(id);
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();

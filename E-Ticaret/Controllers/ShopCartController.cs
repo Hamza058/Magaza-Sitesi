@@ -39,7 +39,7 @@ namespace E_Ticaret.Controllers
                 UserId = user
             };
             sm.TAdd(shopCart);
-            return RedirectToAction("Index","Default");
+            return RedirectToAction("Single","Default",new { id = id });
         }
         public IActionResult DeleteShop(int id)
         {

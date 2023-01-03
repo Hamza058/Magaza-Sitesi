@@ -22,5 +22,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Image> Images { get; set; }
         public DbSet<ShopCart> ShopCarts { get; set; }
+        public DbSet<ProductSizeColor> ProductSizeColors { get; set; }
     }
 }

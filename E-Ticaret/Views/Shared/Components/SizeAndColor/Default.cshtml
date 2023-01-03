@@ -1,4 +1,6 @@
-﻿<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
+﻿@using EntityLayer.Concrete
+
+<button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Sepete Ekle
 </button>
 
@@ -13,11 +15,21 @@
                 <div class="modal-body">
                     <div class="col">
                         <text>Renk</text>
-                        <select name="Color" class="form-select" asp-items="@ViewBag.Colors"></select>
+                        <select name="Color" class="form-select">
+                            @foreach (var item in ViewBag.Colors)
+                            {
+                                <option value="@item">@item</option>
+                            }
+                        </select>
                     </div>
                     <br />
                     <label>Beden</label>
-                    <select name="Size" class="form-select" asp-items="@ViewBag.Numbers"></select>
+                    <select name="Size" class="form-select">
+                        @foreach (var item in ViewBag.Size)
+                        {
+                            <option value="@item">@item</option>
+                        }
+                    </select>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
