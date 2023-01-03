@@ -7,12 +7,15 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class ProductSizeColor
+    public class ProductClothesInfo
     {
         [Key]
-        public int ProductSizeColorId { get; set; }
-        public string Color { get; set; }
-        public string Size { get; set; }
+        public int ProductClothesInfoId { get; set; }
+        public string Gender { get; set; }
+        public string? Pattern { get; set; }
+        public string? CollarStyle { get; set; }
+        public string? Material { get; set; }
+        public string? AddInfo { get; set; }
 
         public int ProductId { get; set; }
         public Product Product { get; set; }

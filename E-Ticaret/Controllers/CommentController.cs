@@ -33,11 +33,5 @@ namespace E_Ticaret.Controllers
             cm.TAdd(comment);
             return RedirectToAction("Index", "Comment", new { id = id });
         }
-
-        [AllowAnonymous]
-        public IActionResult ProductInfo()
-        {
-            return View();
-        }
     }
 }

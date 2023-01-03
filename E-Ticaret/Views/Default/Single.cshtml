@@ -88,7 +88,7 @@
         <table class="table table-bordered" width="100%">
             <thead class="bg-secondary text-center">
                 <tr style="width:100%">
-                    <td width="50%"><a href="/Comment/ProductInfo" class="text-decoration-none text-light" target="info">Ürün Açıklama</a></td>
+                    <td width="50%"><a asp-controller="ProductInfo" asp-action="ClothesInfo" asp-route-id="@Model.ProductId" class="text-decoration-none text-light" target="info">Ürün Açıklama</a></td>
                     <td width="50%">
                         <a asp-controller="Comment" asp-action="Index" asp-route-id="@Model.ProductId" class="text-decoration-none text-light" target="info">Yorumlar</a>
                     </td>
@@ -97,7 +97,7 @@
             <tbody>
                 <tr>
                     <td colspan="2" height="300px">
-                        <iframe src="/Comment/ProductInfo" name="info" width="100%" height="100%"></iframe>
+                        <iframe src="/ProductInfo/ClothesInfo/@Model.ProductId" name="info" width="100%" height="100%"></iframe>
                     </td>
                 </tr>
             </tbody>
@@ -111,7 +111,9 @@
                 <div class="col me-1 border">
                     <div class="row-fluid p-2">
                         <div class="col mb-1 border border-dark">
-                            <img src="~/img/@item.ImageUrl" width="100%" />
+                            <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
+                                <img src="~/img/@item.ImageUrl" width="100%" />
+                            </a>
                         </div>
                         <div class="col text-center pt-2 text-danger">
                             <p class="border-bottom bordered pb-1">@item.Product.Price TL</p>

@@ -25,7 +25,7 @@ namespace BusinessLayer.Concrete
 
         public void TDelete(ProductSizeColor t)
         {
-            _productSizeColor.Delete(t);
+            _productSizeColor.DeleteSql(t);
         }
 
         public ProductSizeColor TGetByID(int id)

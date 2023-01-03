@@ -33,6 +33,7 @@ namespace E_Ticaret.Controllers
 
             return View(values);
         }
+        [Route("[controller]/[action]/{id}")]
         public IActionResult Single(int id)
         {
             ViewBag.Colors = pscm.TGetByID(id).Color.Split('-');
