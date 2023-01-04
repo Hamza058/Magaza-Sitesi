@@ -1,0 +1,51 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Kullancılar</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ad Soyad</th>
+            <th>Mail</th>
+            <th>Parola</th>
+            <th>Durum</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UserId</td>
+                <td>@item.UserName @item.UserSurname</td>
+                <td>@item.UserMail</td>
+                <td>@item.UserPassword</td>
+                <td>@item.UserStatus</td>
+
+                <td class="text-center">
+                    @{
+                        if (item.UserStatus)
+                        {
+                            <a asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger text-dark">Pasif Yap</a>
+                        }
+                        else
+                        {
+                            <a asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-success text-dark">Aktif Yap</a>
+                        }
+                    }
+                </td>
+                <td>
+                    <vc:get-user-info id="@item.UserId"></vc:get-user-info>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

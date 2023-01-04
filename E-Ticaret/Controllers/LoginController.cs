@@ -18,6 +18,7 @@ namespace E_Ticaret.Controllers
     public class LoginController : Controller
     {
         UserManager um = new UserManager(new EFUserDal());
+        AdminManager am = new AdminManager(new EFAdminDal());
 
         // GET: LoginController
         [HttpGet]
@@ -92,6 +93,30 @@ namespace E_Ticaret.Controllers
                 ViewBag.Message = "Geçerli bir mail adresi giriniz";
                 return View();
             }
+        }
+        [HttpGet]
+        public IActionResult AdminLogin()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> AdminLogin(Admin admin)
+        {
+            var admins = am.TGetList();
+            var value = admins.FirstOrDefault(x => x.AdminName == admin.AdminName && x.AdminPassword == admin.AdminPassword);
+            if (value != null)
+            {
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,ClaimTypes.Role,admin.AdminName,admin.AdminRole.ToString())
+                };
+                var useridentity = new ClaimsIdentity(claims,"a");
+                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+                await HttpContext.SignInAsync(principal);
+                return RedirectToAction("Index", "Category");
+            }
+            ViewBag.Message = "Hatalı Kullancı Adı veya Şifre";
+            return View();
         }
 
         public IActionResult Logout()

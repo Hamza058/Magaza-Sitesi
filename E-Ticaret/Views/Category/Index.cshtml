@@ -1,0 +1,43 @@
+﻿@using EntityLayer.Concrete
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Categoriler</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Kategori Adı</th>
+            <th>Kategori Durumu</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryId</td>
+                <td>@item.CategoryName</td>
+                <td class="ps-5">@item.CategoryStatus</td>
+                <td class="text-center">
+                    @{
+                        if (item.CategoryStatus)
+                        {
+                            <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId" class="btn btn-danger text-dark">Pasif Yap</a>
+                        }
+                        else
+                        {
+                            <a asp-action="DeleteCategory" asp-route-id="@item.CategoryId" class="btn btn-success text-dark">Aktif Yap</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<partial name="AddCategoryPartialView.cshtml" />

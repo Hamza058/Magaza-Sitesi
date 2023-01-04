@@ -24,5 +24,6 @@ namespace DataAccessLayer.Concrete
         public DbSet<ShopCart> ShopCarts { get; set; }
         public DbSet<ProductSizeColor> ProductSizeColors { get; set; }
         public DbSet<ProductClothesInfo> ProductClothesInfos { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }

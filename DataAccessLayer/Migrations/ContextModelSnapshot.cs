@@ -19,6 +19,31 @@ namespace DataAccessLayer.Migrations
                 .HasAnnotation("ProductVersion", "5.0.17")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("EntityLayer.Concrete.Admin", b =>
+                {
+                    b.Property<int>("AdminId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AdminName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminPassword")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AdminRole")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(1)");
+
+                    b.Property<bool>("AdminStatus")
+                        .HasColumnType("bit");
+
+                    b.HasKey("AdminId");
+
+                    b.ToTable("Admins");
+                });
+
             modelBuilder.Entity("EntityLayer.Concrete.Brand", b =>
                 {
                     b.Property<int>("BrandId")
@@ -28,6 +53,9 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("BrandName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("BrandStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("BrandId");
 
@@ -43,6 +71,9 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("CategoryName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("CategoryStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("CategoryId");
 
@@ -146,6 +177,9 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<string>("ProductCategoryName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("ProductCategoryStatus")
+                        .HasColumnType("bit");
 
                     b.HasKey("ProductCategoryId");
 
