@@ -13,6 +13,7 @@ namespace EntityLayer.Concrete
         public int ProductCategoryId { get; set; }
         public string ProductCategoryName { get; set; }
         public int CategoryId { get; set; }
+        public bool ProductCategoryStatus { get; set; }
 
         public ICollection<Product> Products { get; set; }
 
