@@ -12,7 +12,7 @@ namespace E_Ticaret.Views.Shared.ViewComponents
 {
     public class AddCommentViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(int id)
+        public IViewComponentResult Invoke(int id)
         {
             ViewBag.id = id;
             return View();

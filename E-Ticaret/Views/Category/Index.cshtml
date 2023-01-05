@@ -1,5 +1,7 @@
 ﻿@using EntityLayer.Concrete
-@model List<Category>
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Category>
 
 @{
     ViewData["Title"] = "Index";
@@ -40,4 +42,9 @@
         }
     </tbody>
 </table>
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new X.PagedList.Web.Common.PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+            {"page-link"}
+})
 <partial name="AddCategoryPartialView.cshtml" />

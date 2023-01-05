@@ -14,7 +14,7 @@ namespace E_Ticaret.Views.Shared.ViewComponents
         ShopCartManager scm = new ShopCartManager(new EFShopCartDal());
 
         [HttpPost]
-        public async Task<IViewComponentResult> InvokeAsync(int id)
+        public IViewComponentResult Invoke(int id)
         {
             var user = um.TGetByID(id);
             ViewBag.Shopcart = scm.TGetList().Where(x => x.UserId == id).ToList();

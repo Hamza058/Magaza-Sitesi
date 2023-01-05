@@ -1,0 +1,84 @@
+﻿@using EntityLayer.Concrete
+
+<button type="button" class="btn btn-warning mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Yeni Ürün Ekle</button>
+
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Ürün Ekle</h1>
+            </div>
+            <form asp-controller="Product" asp-action="AddProduct" method="post">
+                <div class="modal-body">
+                    <div class="col mb-2">
+                        <text>Ürün Ad</text>
+                        <input type="text" class="form-control" name="ProductName" required />
+                    </div>
+                    <div class="col mb-2">
+                        <text>Marka</text>
+                        <select name="BrandId" class="form-select">
+                            @foreach (var item in ViewBag.brands as List<Brand>)
+                            {
+                                <option value="@item.BrandId">@item.BrandName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col mb-2">
+                        <text>Fiyat</text>
+                        <input type="text" class="form-control" name="Price" required />
+                    </div>
+                    <div class="col mb-2">
+                        <text>Stock</text>
+                        <input type="text" class="form-control" name="Stock" required />
+                    </div>
+                    <div class="col mb-2">
+                        <text>Categori</text>
+                        <select name="ProductCategoryId" class="form-select">
+                            @foreach (var item in ViewBag.category as List<ProductCategory>)
+                            {
+                                <option value="@item.ProductCategoryId">@item.ProductCategoryName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col mb-2">
+                        <text>Beden ve Renk</text>
+                        <div class="row">
+                            <div class="col">
+                                <input type="text" class="form-control" name="Size" placeholder="Beden Aralarına '-' koyarak yazınız" required />
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="Color" placeholder="Renk Aralarına '-' koyarak yazınız" required />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col mb-2">
+                        <text>Ürün Açıklama</text>
+                        <div class="row mb-1">
+                            <div class="col">
+                                <input type="text" class="form-control" name="Gender" placeholder="Cinsiyet" />
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="Pattern" placeholder="Desen" />
+                            </div>
+                        </div>
+                        <div class="row mb-1">
+                            <div class="col">
+                                <input type="text" class="form-control" name="CollarStyle" placeholder="Yaka Deseni" />
+                            </div>
+                            <div class="col">
+                                <input type="text" class="form-control" name="Material" placeholder="Malzeme" />
+                            </div>
+                        </div>
+                        <div class="col">
+                            <textarea class="form-control" name="AddInfo" placeholder="Ek Açıklama"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

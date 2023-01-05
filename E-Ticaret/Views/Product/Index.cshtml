@@ -1,24 +1,23 @@
 ﻿@using EntityLayer.Concrete
 @using X.PagedList
 @using X.PagedList.Mvc.Core
-@model IPagedList<User>
+@model IPagedList<Product>
 
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Kullancılar</h1>
+<h1>Ürünler</h1>
 
 <table class="table table-striped">
     <thead>
         <tr>
             <th>#</th>
-            <th>Ad Soyad</th>
-            <th>Mail</th>
-            <th>Parola</th>
+            <th>Ürün Adı</th>
+            <th>Fiyatı</th>
+            <th>Stock</th>
             <th>Durum</th>
-            <th></th>
             <th></th>
         </tr>
     </thead>
@@ -26,26 +25,22 @@
         @foreach (var item in Model)
         {
             <tr>
-                <td>@item.UserId</td>
-                <td>@item.UserName @item.UserSurname</td>
-                <td>@item.UserMail</td>
-                <td>@item.UserPassword</td>
-                <td>@item.UserStatus</td>
-
+                <td>@item.ProductId</td>
+                <td>@item.ProductName</td>
+                <td>@item.Price</td>
+                <td>@item.Stock</td>
+                <td>@item.ProductStatus</td>
                 <td class="text-center">
                     @{
-                        if (item.UserStatus)
+                        if (item.ProductStatus)
                         {
-                            <a asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-danger text-dark">Pasif Yap</a>
+                            <a asp-action="DeleteProduct" asp-route-id="@item.ProductId" class="btn btn-danger text-dark">Pasif Yap</a>
                         }
                         else
                         {
-                            <a asp-action="DeleteUser" asp-route-id="@item.UserId" class="btn btn-success text-dark">Aktif Yap</a>
+                            <a asp-action="DeleteProduct" asp-route-id="@item.ProductId" class="btn btn-success text-dark">Aktif Yap</a>
                         }
                     }
-                </td>
-                <td>
-                    <vc:get-user-info id="@item.UserId"></vc:get-user-info>
                 </td>
             </tr>
         }
@@ -56,3 +51,4 @@
     LiElementClasses = new List<string>
             {"page-link"}
 })
+<vc:add-product></vc:add-product>

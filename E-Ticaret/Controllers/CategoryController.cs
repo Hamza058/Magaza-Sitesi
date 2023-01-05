@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace E_Ticaret.Controllers
 {
@@ -15,9 +16,12 @@ namespace E_Ticaret.Controllers
     {
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
 
-        public IActionResult Index()
+        public IActionResult Index(string f = "", int p = 1)
         {
-            var values = cm.TGetList();
+            if (f == null)
+                f = "";
+            var values = cm.TGetList().Where(x => x.CategoryName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
+
             return View(values);
         }
         [HttpPost]

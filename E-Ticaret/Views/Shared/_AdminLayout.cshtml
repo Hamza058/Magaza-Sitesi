@@ -107,16 +107,28 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
-                    <li class="menu-item active">
+                    <li class="menu-item">
                         <a asp-controller="Category" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-category"></i>
                             <div data-i18n="Analytics">Categoriler</div>
                         </a>
                     </li>
                     <li class="menu-item">
-                        <a href="index.html" class="menu-link">
+                        <a asp-controller="ProductCategory" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-category-alt"></i>
+                            <div data-i18n="Analytics">Ürün Categorileri</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="User" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-user"></i>
                             <div data-i18n="Analytics">Kullanıcılar</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="Product" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-package"></i>
+                            <div data-i18n="Analytics">Ürünler</div>
                         </a>
                     </li>
 
@@ -407,20 +419,21 @@
                             <i class="bx bx-menu bx-sm"></i>
                         </a>
                     </div>
-
-                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
-                        <!-- Search -->
-                        <div class="navbar-nav align-items-center">
-                            <div class="nav-item d-flex align-items-center">
-                                <i class="bx bx-search fs-4 lh-0"></i>
-                                <input type="text"
-                                       class="form-control border-0 shadow-none"
-                                       placeholder="Search..."
-                                       aria-label="Search..." />
+                    <form asp-route="f" method="post">
+                        <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                            <!-- Search -->
+                            <div class="navbar-nav align-items-center">
+                                <div class="nav-item d-flex align-items-center">
+                                    <i class="bx bx-search fs-4 lh-0"></i>
+                                    <input name="f" type="text"
+                                           class="form-control border-0 shadow-none"
+                                           placeholder="Search..."
+                                           aria-label="Search..." />
+                                </div>
                             </div>
+                            <!-- /Search -->
                         </div>
-                        <!-- /Search -->
-                    </div>
+                    </form>
                 </nav>
 
                 <!-- / Navbar -->

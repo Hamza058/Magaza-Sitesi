@@ -17,7 +17,7 @@ namespace E_Ticaret.Views.Shared.ViewComponents
     {
         ProductSizeColorManager pscm = new ProductSizeColorManager(new EFProductSizeColorDal());
 
-        public async Task<IViewComponentResult> InvokeAsync(int id)
+        public IViewComponentResult Invoke(int id)
         {
             ViewBag.Colors = pscm.TGetByID(id).Color.Split('-');
             ViewBag.Size = pscm.TGetByID(id).Size.Split('-');

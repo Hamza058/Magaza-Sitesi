@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace E_Ticaret.Controllers
 {
@@ -14,9 +15,11 @@ namespace E_Ticaret.Controllers
     {
         UserManager um = new UserManager(new EFUserDal());
 
-        public IActionResult Index()
+        public IActionResult Index(string f = "", int p = 1)
         {
-            var users = um.TGetList();
+            if (f == null)
+                f = "";
+            var users = um.TGetList().Where(x => x.UserName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
             return View(users);
         }
 

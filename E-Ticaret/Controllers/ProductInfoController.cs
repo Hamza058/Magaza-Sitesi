@@ -13,6 +13,7 @@ namespace E_Ticaret.Controllers
     public class ProductInfoController : Controller
     {
         ProductClothesInfoManager pcim = new ProductClothesInfoManager(new EFProductClothesInfoDal());
+        
         [Route("[controller]/[action]/{id}")]
         public IActionResult ClothesInfo(int id)
         {
