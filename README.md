@@ -17,3 +17,7 @@
 # SignUp Page
 
 ![sign](https://user-images.githubusercontent.com/78644723/210089805-53254e30-7c14-499e-898f-b3ae06996be7.PNG)
+
+# Admin Page
+
+![admin](https://user-images.githubusercontent.com/78644723/210826574-a9bd2179-7659-435d-b13a-7c1dc5a3e92d.PNG)
