@@ -1,5 +1,6 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -21,6 +22,13 @@ namespace E_Ticaret.Controllers
                 f = "";
             var productcategories = pcm.TGetList().Where(x => x.ProductCategoryName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
             return View(productcategories);
+        }
+        [HttpPost]
+        public IActionResult AddProductCategory(ProductCategory productCategory)
+        {
+            productCategory.ProductCategoryStatus = true;
+            pcm.TAdd(productCategory);
+            return RedirectToAction("Index");
         }
         public IActionResult DeleteProductCategory(int id)
         {
