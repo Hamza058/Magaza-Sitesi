@@ -19,7 +19,7 @@ namespace E_Ticaret.Controllers
         {
             if (f == null)
                 f = "";
-            var users = um.TGetList().Where(x => x.UserName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
+            var users = um.TGetList().Where(x => x.UserName.ToLower().Contains(f.ToLower())).ToPagedList(p, 10);
             return View(users);
         }
 

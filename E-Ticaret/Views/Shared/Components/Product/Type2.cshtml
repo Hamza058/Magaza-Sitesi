@@ -1,0 +1,42 @@
+﻿@using EntityLayer.Concrete
+@model Image
+
+<i class="bx bxs-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Ürün Bilgileri</h1>
+            </div>
+            <div class="modal-body">
+                <div class="card">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><b>Ürün Ad: </b>@Model.Product.ProductName</li>
+                        <li class="list-group-item"><b>Marka: </b>@Model.Product.Brand.BrandName</li>
+                        <li class="list-group-item"><b>Beden: </b>@ViewBag.Size</li>
+                        <li class="list-group-item"><b>Renk: </b>@ViewBag.Color</li>
+                    </ul>
+                </div>
+                <br />
+                <div class="card">
+                    <div class="container">
+                        <h3>Ürün Resimleri</h3>
+                        <div class="row">
+                            @foreach (var item in ViewBag.imgs as List<Image>
+                                )
+                                {
+                                <div class="col-4">
+                                    <image-smal image-src="/img/@item.ImageUrl"></image-smal>
+                                </div>
+                                }
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

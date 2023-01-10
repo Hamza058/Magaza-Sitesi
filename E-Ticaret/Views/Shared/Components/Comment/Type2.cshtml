@@ -1,0 +1,20 @@
+﻿@using EntityLayer.Concrete
+@model Comment
+
+<i class="bx bxs-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Yorum</h1>
+            </div>
+            <div class="modal-body">
+                <p>@Model.Content</p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -20,7 +20,7 @@ namespace E_Ticaret.Controllers
         {
             if (f == null)
                 f = "";
-            var values = cm.TGetList().Where(x => x.CategoryName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
+            var values = cm.TGetList().Where(x => x.CategoryName.ToLower().Contains(f.ToLower())).ToPagedList(p, 10);
 
             return View(values);
         }

@@ -17,7 +17,8 @@ namespace DataAccessLayer.EntityFramework
         {
             using (var c = new Context())
             {
-                return c.Comments.Include(x => x.User).ToList();
+                return c.Comments.Include(x => x.User)
+                    .Include(x => x.Product).ToList();
             }
         }
     }

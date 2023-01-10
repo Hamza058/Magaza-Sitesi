@@ -10,12 +10,18 @@ using System.Threading.Tasks;
 
 namespace E_Ticaret.Views.Shared.ViewComponents
 {
-    public class AddCommentViewComponent : ViewComponent
+    public class CommentViewComponent : ViewComponent
     {
-        public IViewComponentResult Invoke(int id)
+        CommentManager cm = new CommentManager(new EFCommentDal());
+
+        public IViewComponentResult Invoke(int id, int type)
         {
             ViewBag.id = id;
-            return View();
+
+            if (type == 1)
+                return View("Default");
+            else
+                return View("Type2",cm.TGetByID(id));
         }
     }
 }

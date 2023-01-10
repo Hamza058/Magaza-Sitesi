@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace E_Ticaret.Controllers
 {
@@ -32,6 +33,26 @@ namespace E_Ticaret.Controllers
             comment.ProductId = id;
             cm.TAdd(comment);
             return RedirectToAction("Index", "Comment", new { id = id });
+        }
+
+        [AllowAnonymous]
+        public IActionResult AdminComment(string f = "", int p = 1)
+        {
+            if (f == null)
+                f = "";
+            var comments = cm.GetWithUsers().Where(x => x.Content.ToLower().Contains(f.ToLower())).ToPagedList(p, 10);
+
+            return View(comments);
+        }
+        public IActionResult DeleteComment(int id)
+        {
+            var comment = cm.TGetByID(id);
+            if (comment.CommentStatus == true)
+                comment.CommentStatus = false;
+            else
+                comment.CommentStatus = true;
+            cm.TDelete(comment);
+            return RedirectToAction("Index");
         }
     }
 }

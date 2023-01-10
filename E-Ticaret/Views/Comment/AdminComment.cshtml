@@ -1,0 +1,59 @@
+﻿@using EntityLayer.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Comment>
+
+@{
+    ViewData["Title"] = "AdminComment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Yorumlar</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Ad Soyad</th>
+            <th>Ürün</th>
+            <th>Yorum</th>
+            <th>Tarih</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CommentId</td>
+                <td>@item.User.UserName @item.User.UserSurname</td>
+                <td>@item.Product.ProductName</td>
+                <td>
+                    @(item.Content.Length > 20 ? item.Content.Substring(0, 20)+"..." : item.Content)
+                </td>
+                <td>@(((DateTime)item.CreatedDate).ToString("dd-MMM-yyyy"))</td>
+                <td class="text-center">
+                    @{
+                        if (item.CommentStatus)
+                        {
+                            <a asp-action="DeleteComment" asp-route-id="@item.CommentStatus" class="btn btn-danger text-dark">Pasif Yap</a>
+                        }
+                        else
+                        {
+                            <a asp-action="DeleteComment" asp-route-id="@item.CommentStatus" class="btn btn-success text-dark">Aktif Yap</a>
+                        }
+                    }
+                </td>
+                <td>
+                    <vc:comment id="@item.CommentId" type="2"></vc:comment>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("AdminComment", new { p }), new X.PagedList.Web.Common.PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+            {"page-link"}
+})

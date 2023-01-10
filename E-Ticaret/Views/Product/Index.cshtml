@@ -19,6 +19,7 @@
             <th>Stock</th>
             <th>Durum</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -26,7 +27,9 @@
         {
             <tr>
                 <td>@item.ProductId</td>
-                <td>@item.ProductName</td>
+                <td>
+                    @(item.ProductName.Length>20? item.ProductName.Substring(0,20)+"...":item.ProductName)
+                </td>
                 <td>@item.Price</td>
                 <td>@item.Stock</td>
                 <td>@item.ProductStatus</td>
@@ -42,6 +45,9 @@
                         }
                     }
                 </td>
+                <td>
+                    <vc:product id="@item.ProductId" type="2"></vc:product>
+                </td>
             </tr>
         }
     </tbody>
@@ -51,4 +57,4 @@
     LiElementClasses = new List<string>
             {"page-link"}
 })
-<vc:add-product></vc:add-product>
+<vc:product id="0" type="1"></vc:product>

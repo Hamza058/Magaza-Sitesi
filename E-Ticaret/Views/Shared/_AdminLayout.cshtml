@@ -107,17 +107,24 @@
                 <div class="menu-inner-shadow"></div>
 
                 <ul class="menu-inner py-1">
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Categories Side</span>
+                    </li>
                     <li class="menu-item">
                         <a asp-controller="Category" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-category"></i>
-                            <div data-i18n="Analytics">Categoriler</div>
+                            <div data-i18n="Analytics">Kategoriler</div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a asp-controller="ProductCategory" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-category-alt"></i>
-                            <div data-i18n="Analytics">Ürün Categorileri</div>
+                            <div data-i18n="Analytics">Ürün Kategorileri</div>
                         </a>
+                    </li>
+
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Users Side</span>
                     </li>
                     <li class="menu-item">
                         <a asp-controller="User" asp-action="Index" class="menu-link">
@@ -126,16 +133,22 @@
                         </a>
                     </li>
                     <li class="menu-item">
+                        <a asp-controller="Comment" asp-action="AdminComment" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-message"></i>
+                            <div data-i18n="Analytics">Yorumlar</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Products Side</span>
+                    </li>
+                    <li class="menu-item">
                         <a asp-controller="Product" asp-action="Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-package"></i>
                             <div data-i18n="Analytics">Ürünler</div>
                         </a>
                     </li>
 
-
-                    <li class="menu-header small text-uppercase">
-                        <span class="menu-header-text">Pages</span>
-                    </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-dock-top"></i>
@@ -463,7 +476,7 @@
         <!-- Overlay -->
         <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-    
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="~/sneat-1.0.0/assets/vendor/libs/jquery/jquery.js"></script>
@@ -484,5 +497,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

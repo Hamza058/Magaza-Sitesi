@@ -2,9 +2,13 @@
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.FileProviders;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using X.PagedList;
@@ -17,12 +21,22 @@ namespace E_Ticaret.Controllers
         ProductManager pm = new ProductManager(new EFProductDal());
         ProductSizeColorManager pscm = new ProductSizeColorManager(new EFProductSizeColorDal());
         ProductClothesInfoManager pcim = new ProductClothesInfoManager(new EFProductClothesInfoDal());
+        BrandManager bm = new BrandManager(new EFBrandDal());
+        ProductCategoryManager pcm = new ProductCategoryManager(new EFProductCategoryDal());
+        ImageManager im = new ImageManager(new EFImageDal());
+
+        private readonly IFileProvider _fileProvider;
+
+        public ProductController(IFileProvider fileProvider)
+        {
+            _fileProvider = fileProvider;
+        }
 
         public IActionResult Index(string f = "", int p = 1)
         {
             if (f == null)
                 f = "";
-            var products = pm.GetBrands().Where(x => x.ProductName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
+            var products = pm.GetBrands().Where(x => x.ProductName.ToLower().Contains(f.ToLower())).ToPagedList(p, 10);
             return View(products);
         }
 
@@ -48,6 +62,39 @@ namespace E_Ticaret.Controllers
             else
                 product.ProductStatus = true;
             pm.TDelete(product);
+            return RedirectToAction("Index");
+        }
+        [HttpGet]
+        public IActionResult EditProduct(int id)
+        {
+            var product = pm.GetBrands().SingleOrDefault(x => x.ProductId == id);
+            ViewBag.Brand = bm.TGetList();
+            ViewBag.Category = pcm.TGetList();
+            return View(product);
+        }
+        [HttpPost]
+        public IActionResult EditProduct(Product product, List<IFormFile> files)
+        {
+            if (files != null)
+            {
+                Image image;
+                var root = _fileProvider.GetDirectoryContents("wwwroot");
+                var images = root.First(x => x.Name == "img");
+                for (int i = 0; i < files.Count; i++)
+                {
+                    var randomImageName = Guid.NewGuid() + Path.GetExtension(files[i].FileName);
+                    var path = Path.Combine(images.PhysicalPath, randomImageName);
+                    using var stream = new FileStream(path, FileMode.Create);
+                    image = new Image()
+                    {
+                        ImageUrl = randomImageName,
+                        ProductId = product.ProductId
+                    };
+                    im.TAdd(image);
+                }
+                product.ProductStatus = true;
+                pm.TUpdate(product);
+            }
             return RedirectToAction("Index");
         }
     }

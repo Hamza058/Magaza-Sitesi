@@ -1,0 +1,47 @@
+﻿@using EntityLayer.Concrete
+@model Product
+@{
+    ViewData["Title"] = "EditProduct";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>EditProduct</h1>
+<form asp-action="EditProduct" enctype="multipart/form-data" method="post">
+    <input type="hidden" asp-for="ProductId" />
+    <label>Ürün Ad</label>
+    <input asp-for="ProductName" class="form-control" />
+    <br />
+    <label>Ürün Marka</label>
+    <select asp-for="BrandId" class="form-select">
+        <option value="@Model.BrandId">@Model.Brand.BrandName</option>
+        @foreach (var item in ViewBag.Brand as List<Brand>)
+        {
+            if (Model.Brand.BrandName != item.BrandName)
+            {
+                <option value="@item.BrandId">@item.BrandName</option>
+            }
+        }
+    </select>
+    <br />
+    <label>Ürün Fiyat</label>
+    <input asp-for="Price" class="form-control" />
+    <br />
+    <label>Ürün Stock</label>
+    <input asp-for="Stock" class="form-control" />
+    <br />
+    <label>Ürün Kategori</label>
+    <select asp-for="ProductCategoryId" class="form-select">
+        <option value="@Model.ProductCategoryId">@Model.ProductCategory.ProductCategoryName</option>
+        @foreach (var item in ViewBag.Category as List<ProductCategory>)
+        {
+            if (Model.ProductCategory.ProductCategoryName != item.ProductCategoryName)
+            {
+                <option value="@item.ProductCategoryId">@item.ProductCategoryName</option>
+            }
+        }
+    </select>
+    <br />
+    <input name="files" class="form-control" type="file" multiple>
+    <br />
+    <input type="submit" class="btn btn-success" value="Kaydet" />
+</form>

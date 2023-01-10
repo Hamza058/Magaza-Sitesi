@@ -20,7 +20,7 @@ namespace E_Ticaret.Controllers
         {
             if (f == null)
                 f = "";
-            var productcategories = pcm.TGetList().Where(x => x.ProductCategoryName.ToLower().Contains(f.ToLower())).ToPagedList(p, 5);
+            var productcategories = pcm.TGetList().Where(x => x.ProductCategoryName.ToLower().Contains(f.ToLower())).ToPagedList(p, 10);
             return View(productcategories);
         }
         [HttpPost]
