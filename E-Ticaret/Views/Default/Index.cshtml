@@ -40,7 +40,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-9 ps-5">
-            <h2 class="text-center">Ürünler</h2>
+            <h2 class="text-center" style="font-family:'Lucida Calligraphy'">Ürünler</h2>
             <div class="row mb-1">
                 @foreach (var item in Model)
                 {
@@ -60,16 +60,16 @@
                                 <div class="col ">
                                     <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
                                     @*@{
-                                        if (item.Product.Brand.BrandName.Length + item.Product.ProductName.Length < 18)
-                                        {
-                                            <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
-                                        }
-                                        else
-                                        {
+                                            if (item.Product.Brand.BrandName.Length + item.Product.ProductName.Length < 18)
+                                            {
+                                                <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
+                                            }
+                                            else
+                                            {
 
-                                            <b>@item.Product.Brand.BrandName</b> <label>@item.Product.ProductName.Substring(0,Math.Abs(18 - item.Product.Brand.BrandName.Length))</label>
-                                        }
-                                    }*@
+                                                <b>@item.Product.Brand.BrandName</b> <label>@item.Product.ProductName.Substring(0,Math.Abs(18 - item.Product.Brand.BrandName.Length))</label>
+                                            }
+                                        }*@
                                 </div>
                                 <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>
@@ -83,31 +83,23 @@
         </div>
         <div class="col-3 mt-2">
             <div class="rowrow-cols-fluid-2 p-2">
-                <div class="col border-bottom dropdown mb-3">
-                    <div class="col text-center border-bottom bordered">
-                        <a class="dropdown-toggle text-decoration-none text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <h5>Kategoriler</h5>
-                        </a>
-                        <ul class="dropdown-menu" style="list-style:none">
-                            @foreach (var item in ViewBag.category as List<ProductCategory>)
-                            {
-                                <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.ProductCategoryName">@item.ProductCategoryName</a></li>
-                            }
-                        </ul>
-                    </div>
+                <div class="col dropdown">
+                    <details class="akerdion border-bottom">
+                        <summary class="ozet text-center">KATEGORİLER</summary>
+                        @foreach (var item in ViewBag.category as List<ProductCategory>)
+                        {
+                            <a class="dropdown-item  ps-2 item" asp-controller="Default" asp-action="Index" asp-route-f="@item.ProductCategoryName">@item.ProductCategoryName</a>
+                        }
+                    </details>
                 </div>
-                <div class="col border-bottom dropdown">
-                    <div class="col text-center border-bottom bordered">
-                        <a class="dropdown-toggle text-decoration-none text-dark" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <h5>Markalar</h5>
-                        </a>
-                        <ul class="dropdown-menu" style="list-style:none">
-                            @foreach (var item in ViewBag.brand as List<Brand>)
-                            {
-                                <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.BrandName">@item.BrandName</a></li>
-                            }
-                        </ul>
-                    </div>
+                <div class="col dropdown">
+                    <details class="akerdion border-bottom">
+                        <summary class="ozet text-center">MARKALAR</summary>
+                        @foreach (var item in ViewBag.brand as List<Brand>)
+                        {
+                            <a class="dropdown-item ps-2 item" asp-controller="Default" asp-action="Index" asp-route-f="@item.BrandName">@item.BrandName</a>
+                        }
+                    </details>
                 </div>
             </div>
         </div>
