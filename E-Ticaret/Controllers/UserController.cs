@@ -14,6 +14,7 @@ namespace E_Ticaret.Controllers
     public class UserController : Controller
     {
         UserManager um = new UserManager(new EFUserDal());
+        ShopCartManager scm = new ShopCartManager(new EFShopCartDal());
 
         public IActionResult Index(string f = "", int p = 1)
         {
@@ -32,6 +33,19 @@ namespace E_Ticaret.Controllers
                 user.UserStatus = true;
             um.TDelete(user);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult GetInfo(int id)
+        {
+            var infos = um.TGetList().Where(x => x.UserId == id).ToList();
+            return Json(infos);
+        }
+        [HttpGet]
+        public IActionResult GetShopInfo(int id)
+        {
+            var shopcart = scm.TGetList().Where(x => x.UserId == id).ToList();
+            return Json(shopcart);
         }
     }
 }
