@@ -14,14 +14,10 @@ namespace E_Ticaret.Views.Shared.ViewComponents
     {
         CommentManager cm = new CommentManager(new EFCommentDal());
 
-        public IViewComponentResult Invoke(int id, int type)
+        public IViewComponentResult Invoke(int id)
         {
             ViewBag.id = id;
-
-            if (type == 1)
-                return View("Default");
-            else
-                return View("Type2",cm.TGetByID(id));
+            return View("Default");
         }
     }
 }

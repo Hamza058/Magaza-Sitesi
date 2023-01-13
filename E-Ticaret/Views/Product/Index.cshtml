@@ -8,6 +8,49 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@section Scripts{
+    <script type="text/javascript">
+        function getInfo(id) {
+            $.ajax({
+                dataType: 'text',
+                type: "Get",
+                url: "/Product/GetInfoProduct/",
+                data: { id: id },
+                success: function (data) {
+                    $("#info").html("");
+                    let datas = jQuery.parseJSON(data);
+                    let infos = `<li class="list-group-item"><b>Ürün Ad: </b>${datas.Name}</li>
+                                <li class="list-group-item"><b>Marka: </b>${datas.Brand}</li>
+                                <li class="list-group-item"><b>Beden: </b>${datas.Size}</li>
+                                <li class="list-group-item"><b>Renk: </b>${datas.Color}</li>`;
+                    $("#info").append(infos);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            }).always(function () {
+                $.ajax({
+                    type: "Get",
+                    url: "/Product/GetImageProduct/",
+                    data: { id: id },
+                    success: function (data) {
+                        $("#image").html("");
+                        $.each(data, function (index, item) {
+                            let images = `<div class="col-4">
+                                            <img src="/img/${item.imageUrl}" style="width:100%"></img>
+                                          </div>`;
+                            $("#image").append(images);
+                        });
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                })
+            })
+        };
+    </script>
+}
+
 <h1>Ürünler</h1>
 
 <table class="table table-striped">
@@ -46,12 +89,43 @@
                     }
                 </td>
                 <td>
-                    <vc:product id="@item.ProductId" type="2"></vc:product>
+                    <i onclick="getInfo(@item.ProductId)" class="bx bxs-info-circle" data-bs-toggle="modal" data-bs-target="#getInfoModal" style="cursor:grab"></i>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div class="modal" id="getInfoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Ürün Bilgileri</h1>
+            </div>
+            <div>
+                <div class="modal-body">
+                    <div class="card">
+                        <ul class="list-group list-group-flush" id="info">
+                        </ul>
+                    </div>
+                    <br />
+                    <div class="card">
+                        <div class="container">
+                            <h3>Ürün Resimleri</h3>
+                            <div class="row" id="image">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new X.PagedList.Web.Common.PagedListRenderOptions
 {
     LiElementClasses = new List<string>

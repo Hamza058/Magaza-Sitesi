@@ -97,5 +97,23 @@ namespace E_Ticaret.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public IActionResult GetInfoProduct(int id)
+        {
+            Dictionary<string, string> product = new Dictionary<string, string>();
+            product.Add("Name", pm.TGetByID(id).ProductName);
+            product.Add("Brand", pm.GetBrands().FirstOrDefault(x => x.ProductId == id).Brand.BrandName);
+            product.Add("Size", pscm.TGetByID(id).Size);
+            product.Add("Color", pscm.TGetByID(id).Color);
+
+            return Json(product);
+        }
+        [HttpGet]
+        public IActionResult GetImageProduct(int id)
+        {
+            var images = im.TGetList().Where(x => x.ProductId == id).ToList();
+            return Json(images);
+        }
     }
 }

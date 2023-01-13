@@ -12,12 +12,12 @@ using X.PagedList;
 
 namespace E_Ticaret.Controllers
 {
+    [AllowAnonymous]
     public class CommentController : Controller
     {
         CommentManager cm = new CommentManager(new EFCommentDal());
         UserManager um = new UserManager(new EFUserDal());
 
-        [AllowAnonymous]
         public IActionResult Index(int id)
         {
             var comments = cm.GetWithUsers().Where(x => x.ProductId == id).ToList();
@@ -35,7 +35,6 @@ namespace E_Ticaret.Controllers
             return RedirectToAction("Index", "Comment", new { id = id });
         }
 
-        [AllowAnonymous]
         public IActionResult AdminComment(string f = "", int p = 1)
         {
             if (f == null)
@@ -44,6 +43,7 @@ namespace E_Ticaret.Controllers
 
             return View(comments);
         }
+
         public IActionResult DeleteComment(int id)
         {
             var comment = cm.TGetByID(id);
@@ -53,6 +53,13 @@ namespace E_Ticaret.Controllers
                 comment.CommentStatus = true;
             cm.TDelete(comment);
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult AdminCommentGet(int id)
+        {
+            var comment = cm.TGetByID(id).Content;
+            return Json(comment);
         }
     }
 }

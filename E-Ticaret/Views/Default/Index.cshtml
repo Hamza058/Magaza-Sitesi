@@ -59,17 +59,6 @@
                             <div class="col text-center">
                                 <div class="col ">
                                     <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
-                                    @*@{
-                                            if (item.Product.Brand.BrandName.Length + item.Product.ProductName.Length < 18)
-                                            {
-                                                <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
-                                            }
-                                            else
-                                            {
-
-                                                <b>@item.Product.Brand.BrandName</b> <label>@item.Product.ProductName.Substring(0,Math.Abs(18 - item.Product.Brand.BrandName.Length))</label>
-                                            }
-                                        }*@
                                 </div>
                                 <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>

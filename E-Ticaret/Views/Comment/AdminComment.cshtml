@@ -8,6 +8,25 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@section Scripts{
+    <script type="text/javascript">
+        function showComment(id) {
+            $.ajax({
+                type: "Get",
+                url: "/Comment/AdminCommentGet/",
+                data: { id: id },
+                success: function (data) {
+                    $("#show").html("");
+                    $("#show").append(data);
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        };
+    </script>
+}
+
 <h1>Yorumlar</h1>
 
 <table class="table table-striped">
@@ -46,12 +65,27 @@
                     }
                 </td>
                 <td>
-                    <vc:comment id="@item.CommentId" type="2"></vc:comment>
+                    <i onclick="showComment(@item.CommentId)" class="bx bxs-info-circle" data-bs-toggle="modal" data-bs-target="#exampleModal" style="cursor:grab"></i>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Yorum</h1>
+            </div>
+            <div class="modal-body" id="show">
+                
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>
 @Html.PagedListPager((IPagedList)Model, p => Url.Action("AdminComment", new { p }), new X.PagedList.Web.Common.PagedListRenderOptions
 {
     LiElementClasses = new List<string>
