@@ -15,6 +15,9 @@ namespace EntityLayer.Concrete
         public string ShopCartProductSize { get; set; }
         public string ShopCartProductColor { get; set; }
         public int ShopCartProductPrice { get; set; }
+        public bool ShopCartStatus { get; set; }
+        public bool ShopCartConfirm { get; set; }
+        public DateTime? ShopCartConfirmDate { get; set; }
 
         public int UserId { get; set; }
         public User User { get; set; }

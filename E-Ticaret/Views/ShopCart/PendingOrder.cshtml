@@ -1,0 +1,85 @@
+﻿@using EntityLayer.Concrete
+@model List<User>
+
+@{
+    ViewData["Title"] = "PendingOrder";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        function getInfo(id) {
+            $.ajax({
+                type: "Get",
+                url: "/ShopCart/Basket/",
+                data: { id: id },
+                success: function (data) {
+                    $("#basket").html("");
+                    $.each(data, function (index, item) {
+                        let products = `<li class="list-group-item">
+                            ${item.shopCartProductName} - ${item.shopCartProductSize} - ${item.shopCartProductColor} - ${item.shopCartProductPrice}
+                        </li>`;
+                        $("#basket").append(products);
+                    });
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        };
+        function confirm(id) {
+            $.ajax({
+                type: "Post",
+                url: "/ShopCart/Confirm/",
+                data: { id: id },
+                success: function (data) {
+                    window.location.reload()
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        }
+    </script>
+}
+
+<h1>Bekleyen Siparişler</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Ad Soyad</th>
+            <th>Adres</th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.UserName @item.UserSurname</td>
+                <td>@item.UserAdress</td>
+                <td><button onclick="confirm(@item.UserId)" class="btn btn-success">Onayla</button></td>
+                <td><i onclick="getInfo(@item.UserId)" class="bx bxs-info-circle" data-bs-toggle="modal" data-bs-target="#getInfoModal" style="cursor:grab"></i></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal" id="getInfoModal" tabindex="-1" aria-labelledby="getInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="card">
+                    <div class="card-header bg-warning">
+                        <b>Sepet İçeriği</b>
+                    </div>
+                    <ul id="basket" class="list-group list-group-flush"></ul>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+            </div>
+        </div>
+    </div>
+</div>

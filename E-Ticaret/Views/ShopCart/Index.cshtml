@@ -24,7 +24,7 @@
                 <td>@item.ShopCartProductColor</td>
                 <td>@item.ShopCartProductSize</td>
                 <td>@item.ShopCartProductPrice</td>
-                <td><a href="/ShopCart/DeleteShop/@item.ShopCartId">Sil</a></td>
+                <td><a asp-action="DeleteShop" asp-route-id="@item.ShopCartId">Sil</a></td>
             </tr>
         }
     </table>

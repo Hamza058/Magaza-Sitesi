@@ -148,7 +148,32 @@
                             <div data-i18n="Analytics">Ürünler</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a asp-controller="Product" asp-action="Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-image"></i>
+                            <div data-i18n="Analytics">Ürün Galeri</div>
+                        </a>
+                    </li>
 
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">ShopCart Side</span>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="ShopCart" asp-action="PendingOrder" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-time"></i>
+                            <div data-i18n="Analytics">Bekleyen Siparişler</div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="ShopCart" asp-action="ConfirmedOrder" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-check"></i>
+                            <div data-i18n="Analytics">Onaylanan Siparişler</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-header small text-uppercase">
+                        <span class="menu-header-text">Default Side</span>
+                    </li>
                     <li class="menu-item">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="menu-icon tf-icons bx bx-dock-top"></i>

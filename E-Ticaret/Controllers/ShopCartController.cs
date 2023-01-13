@@ -47,5 +47,60 @@ namespace E_Ticaret.Controllers
             sm.TDelete(value);
             return RedirectToAction("Index","ShopCart");
         }
+        [AllowAnonymous]
+        public IActionResult PendingOrder()
+        {
+            var value = sm.TGetList().Where(x => x.ShopCartStatus == true && x.ShopCartConfirm==false).ToList();
+            List<User> users = new List<User>();
+            if (value != null)
+            {
+                foreach (var item in value)
+                {
+                    users.Add(um.TGetByID(item.UserId));
+                }
+                users = users.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                return View(users);
+            }
+            return View();
+        }
+        [AllowAnonymous]
+        public IActionResult ConfirmedOrder()
+        {
+            var value = sm.TGetList().Where(x => x.ShopCartConfirm == true).ToList();
+            List<User> users = new List<User>();
+            if (value != null)
+            {
+                foreach (var item in value)
+                {
+                    users.Add(um.TGetByID(item.UserId));
+                }
+                users = users.GroupBy(x => x).Where(g => g.Count() > 1).Select(y => y.Key).ToList();
+                return View(users);
+            }
+            return View();
+        }
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Basket(int id)
+        {
+            var user = um.TGetByID(id).UserId;
+            var shop = sm.TGetList().Where(x => x.UserId == user).ToList();
+            shop.GroupBy(x => x.ShopCartConfirmDate).Where(g => g.Count() > 1).Select(y => y.Key);
+
+            return Json(shop);
+        }
+
+        [HttpPost]
+        public IActionResult Confirm(int id)
+        {
+            var shop = sm.TGetList().Where(x => x.UserId == id).ToList();
+            foreach (var item in shop)
+            {
+                item.ShopCartConfirm = true;
+                item.ShopCartConfirmDate = DateTime.Now;
+                sm.TUpdate(item);
+            }
+            return Json(new { IsSuccess = "true" });
+        }
     }
 }
