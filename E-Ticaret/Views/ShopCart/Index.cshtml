@@ -7,25 +7,36 @@
 }
 
 <div class="container">
-    <table class="table table-striped table-hover">
-        <thead class="bg-primary text-light">
-            <tr>
-                <th>Ürün Adı</th>
-                <th>Renk</th>
-                <th>Beden</th>
-                <th>Fiyat</th>
-                <th></th>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
+    @{
+        if (Model.Count > 0)
         {
-            <tr>
-                <td>@item.ShopCartProductName</td>
-                <td>@item.ShopCartProductColor</td>
-                <td>@item.ShopCartProductSize</td>
-                <td>@item.ShopCartProductPrice</td>
-                <td><a asp-action="DeleteShop" asp-route-id="@item.ShopCartId">Sil</a></td>
-            </tr>
+            <table class="table table-striped table-hover">
+                <thead class="bg-primary text-light">
+                    <tr>
+                        <th>Ürün Adı</th>
+                        <th>Renk</th>
+                        <th>Beden</th>
+                        <th>Fiyat</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.ShopCartProductName</td>
+                        <td>@item.ShopCartProductColor</td>
+                        <td>@item.ShopCartProductSize</td>
+                        <td>@item.ShopCartProductPrice</td>
+                        <td><a asp-action="DeleteShop" asp-route-id="@item.ShopCartId">Sil</a></td>
+                    </tr>
+                }
+            </table>
+            <a asp-action="ConfirmShop" class="btn btn-success">Sepeti Onayla</a>
         }
-    </table>
+        else
+        {
+            <marquee><h1>Sepetiniz Şuanda Boş</h1></marquee>
+        }
+    }
+
 </div>

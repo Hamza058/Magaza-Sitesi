@@ -21,7 +21,7 @@ namespace E_Ticaret.Controllers
         public IActionResult Index()
         {
             var user = um.TGetList().Where(x => x.UserMail == HttpContext.Session.GetString("UserMail")).FirstOrDefault().UserId;
-            var shop = sm.TGetList().Where(x => x.UserId == user).ToList();
+            var shop = sm.TGetList().Where(x => x.UserId == user && x.ShopCartStatus == false).ToList();
 
             return View(shop);
         }
@@ -101,6 +101,28 @@ namespace E_Ticaret.Controllers
                 sm.TUpdate(item);
             }
             return Json(new { IsSuccess = "true" });
+        }
+
+        [HttpGet]
+        public IActionResult ConfirmShop()
+        {
+            var user = um.TGetList().FirstOrDefault(x => x.UserMail == HttpContext.Session.GetString("UserMail")).UserId;
+            ViewBag.adres = um.TGetByID(user).UserAdress;
+            var shop = sm.TGetList().Where(x => x.UserId == user && x.ShopCartStatus == false).ToList();
+
+            return View(shop);
+        }
+        [HttpPost]
+        public IActionResult ConfirmShop(string adres)
+        {
+            var user = um.TGetList().FirstOrDefault(x=>x.UserMail== HttpContext.Session.GetString("UserMail"));
+            user.UserAdress = adres;
+            var shop = sm.TGetList().Where(x => x.UserId == user.UserId && x.ShopCartStatus == false).ToList();
+            foreach (var item in shop)
+            {
+                item.ShopCartStatus = true;
+            }
+            return RedirectToAction("Index", "Default");
         }
     }
 }
