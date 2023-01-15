@@ -2,6 +2,8 @@
 @using E_Ticaret.Controllers
 @using BusinessLayer.Concrete
 @using DataAccessLayer.EntityFramework
+@using EntityLayer.Concrete
+
 @{
     Layout = null;
     string name = "";
@@ -27,30 +29,10 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <title>Document</title>
+    @await RenderSectionAsync("Css", required: false)
     <style>
-        .zoom:hover {
-            box-shadow: 15px 15px 25px 5px #b6b6b6;
-            /*transform: scale(1.2);*/
-        }
-
         html, body {
             width: 100% !important;
-        }
-
-        .akerdion {
-            margin: 2px;
-            padding: 1.04%;
-        }
-
-        .ozet {
-            font-family: 'Lucida Handwriting';
-            cursor: pointer;
-            margin: -1%;
-            padding: 8px 10px;
-        }
-
-        .item {
-            font-family: cursive;
         }
     </style>
 </head>
@@ -67,7 +49,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-5 mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/Default/Index">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/Default/Index">Ana Sayfa</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Link</a>
@@ -75,25 +57,25 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                            aria-expanded="false">
-                            Dropdown
+                            Kategoriler
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                            @foreach (var item in @ViewBag.cat as List<Category>)
+                            {
+                                <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.CategoryName">@item.CategoryName</a></li>
+                            }
                         </ul>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link disabled">Disabled</a>
+                        <a class="nav-link" href="#contact">İletişim</a>
                     </li>
                 </ul>
-                <form class="d-flex" asp-controller="Default" asp-action="Index" role="search">
-                    <input name="f" class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
-                </form>
+                <div class="col-4">
+                    <form class="d-flex" asp-controller="Default" asp-action="Index" role="search">
+                        <input name="f" class="form-control me-2" type="search" placeholder="Ürün, kategori veya marka ara" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Ara</button>
+                    </form>
+                </div>
                 <div class="ms-auto">
                     <ul class="navbar-nav">
                         @if (name == "")
@@ -126,6 +108,27 @@
     </nav>
     <br />
     @RenderBody()
+    <footer>
+        <section id="contact">
+            <div class="container-fluid mt-4">
+                <div class="row bg-secondary pt-2 text-center">
+                    <div class="col-4">
+                        <p class="text-warning">İletişim Bilgileri</p>
+                        <label class="text-light"><b>Telefon Numarası: </b>0500 000 0000</label>
+                        <label class="text-light"><b>Eposta Adresi: </b>deneme@hotmail.com</label>
+                    </div>
+                    <div class="col-4 pt-3"><p class="text-warning">Created by Hamza Kılıç</p></div>
+                    <div class="col-4">
+                        <p class="text-warning">Kategoriler</p>
+                        @foreach (var item in ViewBag.cat as List<Category>)
+                        {
+                            <label class="text-light">@item.CategoryName / </label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </footer>
     @await RenderSectionAsync("Scripts", required: false)
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"

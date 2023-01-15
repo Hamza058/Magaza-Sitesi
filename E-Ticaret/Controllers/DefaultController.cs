@@ -23,13 +23,15 @@ namespace E_Ticaret.Controllers
         BrandManager bm = new BrandManager(new EFBrandDal());
         ImageManager im = new ImageManager(new EFImageDal());
         ProductSizeColorManager pscm = new ProductSizeColorManager(new EFProductSizeColorDal());
+        CategoryManager cm = new CategoryManager(new EFCategoryDal());
 
         //[Route("[controller]/[action]/{f?}")]
         public IActionResult Index(string f="")
         {
-            var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && (x.Product.Brand.BrandName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.ProductCategoryName.ToLower().Contains(f.ToLower()) || x.Product.ProductName.ToLower().Contains(f.ToLower()))).ToList();
+            var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && (x.Product.Brand.BrandName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.ProductCategoryName.ToLower().Contains(f.ToLower()) || x.Product.ProductName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.Category.CategoryName.Contains(f))).ToList();
             ViewBag.category = pcm.TGetList();
             ViewBag.brand = bm.TGetList();
+            ViewBag.cat = cm.TGetList();
 
             return View(values);
         }

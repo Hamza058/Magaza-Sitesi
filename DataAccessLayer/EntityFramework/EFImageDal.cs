@@ -20,7 +20,8 @@ namespace DataAccessLayer.EntityFramework
             {
                 return c.Images.Include(x => x.Product)
                     .Include(x=>x.Product.Brand)
-                    .Include(x=>x.Product.ProductCategory).ToList();
+                    .Include(x=>x.Product.ProductCategory)
+                    .Include(x=>x.Product.ProductCategory.Category).ToList();
 
             }
         }

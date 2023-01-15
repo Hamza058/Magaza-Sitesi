@@ -4,7 +4,36 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+@section Css{
+    <style>
+        .zoom:hover {
+            box-shadow: 15px 15px 25px 5px #b6b6b6;
+            /*transform: scale(1.2);*/
+        }
+        .akerdion {
+            margin: 2px;
+            padding: 1.04%;
+        }
+        .ozet {
+            font-family: 'Lucida Handwriting';
+            cursor: pointer;
+            margin: -1%;
+            padding: 8px 10px;
+        }
+        .item {
+            font-family: cursive;
+        }
+        b {
+            font-family: Rockwell;
+        }
+        label {
+            font-family: 'Cambria Math';
+        }
+        .cate{
+            font-family:'Courier New';
+        }
+    </style>
+}
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
     <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
@@ -40,7 +69,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-9 ps-5">
-            <h2 class="text-center" style="font-family:'Lucida Fax'">Ürünler</h2>
+            <h2 class="text-center" style="font-family: 'Comic Sans MS' ">Ürünler</h2>
             <div class="row mb-1">
                 @foreach (var item in Model)
                 {
@@ -58,9 +87,9 @@
                             </div>
                             <div class="col text-center">
                                 <div class="col ">
-                                    <b>@item.Product.Brand.BrandName</b> @item.Product.ProductName
+                                    <b>@item.Product.Brand.BrandName</b> <label class="font-f">@item.Product.ProductName</label>
                                 </div>
-                                <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
+                                <div class="col cate">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>
                             <div class="col text-center mt-2">
                                 <vc:size-and-color id="@item.ProductId"></vc:size-and-color>
