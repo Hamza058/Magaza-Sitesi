@@ -41,12 +41,14 @@
                         </div>
                         <div class="col pt-3 main">
                             <div class="col pb-4">
-                                <i class="fa fa-user-o me-1" style="font-size: 23px;"></i>
-                                <input asp-for="UserName" class="textBox" placeholder="Adınız" pattern="[A-Za-z]*" title="Sadece Harf Giriniz!!!" required>
+                                    <i class="fa fa-user-o me-1" style="font-size: 23px;"></i>
+                                    <input asp-for="UserName" class="textBox" placeholder="Adınız" pattern="[A-Za-z]*" title="Sadece Harf Giriniz!!!" required><br />
+                                <span class="text-danger" asp-validation-for="UserName"></span>
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-user-o me-1" style="font-size: 23px;"></i>
-                                <input asp-for="UserSurname" class="textBox" placeholder="Soyadınız" pattern="[A-Za-z]*" title="Sadece Harf Giriniz!!!" required>
+                                <input asp-for="UserSurname" class="textBox" placeholder="Soyadınız" pattern="[A-Za-z]*" title="Sadece Harf Giriniz!!!" required><br />
+                                <span class="text-danger" asp-validation-for="UserSurname"></span>
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-envelope-o me-1" style="font-size: 23px;"></i>
@@ -54,7 +56,8 @@
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-lock me-1" style="font-size: 28px;"></i>
-                                <input type="password" asp-for="UserPassword" class="textBox" placeholder="Parolanız" required>
+                                <input type="password" asp-for="UserPassword" class="textBox" placeholder="Parolanız" required><br />
+                                <span class="text-danger" asp-validation-for="UserPassword"></span>
                             </div>
                             <div class="col pb-4">
                                 <i class="fa fa-phone me-1" style="font-size: 25px;"></i>

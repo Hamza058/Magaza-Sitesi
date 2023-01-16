@@ -11,9 +11,12 @@ namespace EntityLayer.Concrete
     {
         [Key]
         public int UserId { get; set; }
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "İsim maximum 20 minimum 2 karakter olmalı!")]
         public string UserName { get; set; }
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Soyisim maximum 20 minimum 2 karakter olmalı!")]
         public string UserSurname { get; set; }
         public string UserMail { get; set; }
+        [StringLength(20, MinimumLength = 2, ErrorMessage = "Parola maximum 20 minimum 8 karakter olmalı!")]
         public string UserPassword { get; set; }
         public string UserPhone { get; set; }
 

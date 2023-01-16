@@ -40,6 +40,7 @@ namespace E_Ticaret.Controllers
         {
             ViewBag.Colors = pscm.TGetByID(id).Color.Split('-');
             ViewBag.Size = pscm.TGetByID(id).Size.Split('-');
+            ViewBag.cat = cm.TGetList();
 
             var value = im.GetByIDProduct(id);
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();

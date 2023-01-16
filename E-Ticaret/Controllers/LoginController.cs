@@ -73,19 +73,22 @@ namespace E_Ticaret.Controllers
         {
             try
             {
-                MailAddress m = new MailAddress(user.UserMail);
-                if (m.Host != null)
+                if (ModelState.IsValid)
                 {
-                    user.UserName.Trim();
-                    user.UserSurname.Trim();
-                    user.UserMail.Trim();
-                    user.UserPassword.Trim();
-                    user.UserPhone.Trim();
-                    user.UserStatus = true;
-                    um.TAdd(user);
-                    return RedirectToAction("Index", "Login");
+                    MailAddress m = new MailAddress(user.UserMail);
+                    if (m.Host != null)
+                    {
+                        user.UserName.Trim();
+                        user.UserSurname.Trim();
+                        user.UserMail.Trim();
+                        user.UserPassword.Trim();
+                        user.UserPhone.Trim();
+                        user.UserStatus = true;
+                        um.TAdd(user);
+                        return RedirectToAction("Index", "Login");
+                    }
+                    ViewBag.Message = "Geçerli bir mail adresi giriniz";
                 }
-                ViewBag.Message = "Geçerli bir mail adresi giriniz";
                 return View();
             }
             catch (Exception)
@@ -110,7 +113,7 @@ namespace E_Ticaret.Controllers
                 {
                     new Claim(ClaimTypes.Name,ClaimTypes.Role,admin.AdminName,admin.AdminRole.ToString())
                 };
-                var useridentity = new ClaimsIdentity(claims,"a");
+                var useridentity = new ClaimsIdentity(claims, "a");
                 ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
                 await HttpContext.SignInAsync(principal);
                 return RedirectToAction("Index", "Category");
