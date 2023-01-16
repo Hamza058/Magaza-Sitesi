@@ -49,5 +49,18 @@ namespace E_Ticaret.Controllers
 
             return View(value);
         }
+
+        [HttpGet]
+        public IActionResult SizeColor(int id)
+        {
+            ViewBag.id = id;
+            Dictionary<string, object> cs = new Dictionary<string, object>();
+            var color = pscm.TGetByID(id).Color.Split('-');
+            var size = pscm.TGetByID(id).Size.Split('-');
+            cs.Add("color", color);
+            cs.Add("size", size);
+
+            return Json(cs);
+        }
     }
 }

@@ -4,33 +4,81 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
+@section Scripts{
+    <script type="text/javascript">
+        function getInfo(id) {
+            document.getElementById("productid").value = id;
+            $.ajax({
+                type: "Get",
+                url: "/Default/SizeColor",
+                data: { id: id },
+                success: function (data) {
+                    $("#color").html("");
+                    $("#size").html("");
+                    data.color.forEach(function (item) {
+                        $("#color").append(`<option value="${item}">${item}</option>`);
+                    });
+                    data.size.forEach(function (item) {
+                        $("#size").append(`<option value="${item}">${item}</option>`);
+                    });
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        };
+        $("#AddShop").click(function () {
+            var color = $("#color").val();
+            var size = $("#size").val();
+            var id = parseInt($("#productid").val());
+            var jsonData = { "id": id, "color": color, "size": size };
+            $.ajax({
+                type: "Post",
+                url: "/ShopCart/AddShop",
+                data: jsonData,
+                success: function (data) {
+                    alert("Ürün Sepete Eklenmiştir");
+                },
+                error: function (e) {
+                    console.log(e);
+                }
+            })
+        })
+    </script>
+}
 @section Css{
     <style>
         .zoom:hover {
             box-shadow: 15px 15px 25px 5px #b6b6b6;
             /*transform: scale(1.2);*/
         }
+
         .akerdion {
             margin: 2px;
             padding: 1.04%;
         }
+
         .ozet {
             font-family: 'Lucida Handwriting';
             cursor: pointer;
             margin: -1%;
             padding: 8px 10px;
         }
+
         .item {
             font-family: cursive;
         }
+
         b {
             font-family: Rockwell;
         }
+
         label {
             font-family: 'Cambria Math';
         }
-        .cate{
-            font-family:'Courier New';
+
+        .cate {
+            font-family: 'Courier New';
         }
     </style>
 }
@@ -92,7 +140,9 @@
                                 <div class="col cate">@item.Product.ProductCategory.ProductCategoryName</div>
                             </div>
                             <div class="col text-center mt-2">
-                                <vc:size-and-color id="@item.ProductId"></vc:size-and-color>
+                                <button type="button" onclick="getInfo(@item.ProductId)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SizeColor">
+                                    Sepete Ekle
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -120,6 +170,36 @@
                     </details>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="SizeColor" tabindex="-1" aria-labelledby="SizeColorLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Renk ve Beden Seçiniz</h1>
+            </div>
+            <form id="myform" >
+                <input type="hidden" name="Productid" id="productid" value="0"/>
+                <div class="modal-body">
+                    <div class="col">
+                        <text>Renk</text>
+                        <select name="Color" class="form-select" id="color">
+                                
+                        </select>
+                    </div>
+                    <br />
+                    <label>Beden</label>
+                    <select name="Size" class="form-select" id="size">
+                        
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary" id="AddShop">Sepete Ekle</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

@@ -17,18 +17,22 @@ namespace E_Ticaret.Controllers
         ShopCartManager sm = new ShopCartManager(new EFShopCartDal());
         UserManager um = new UserManager(new EFUserDal());
         ProductManager pm = new ProductManager(new EFProductDal());
+        CategoryManager cm = new CategoryManager(new EFCategoryDal());
 
         public IActionResult Index()
         {
+            ViewBag.cat = cm.TGetList();
             var user = um.TGetList().Where(x => x.UserMail == HttpContext.Session.GetString("UserMail")).FirstOrDefault().UserId;
             var shop = sm.TGetList().Where(x => x.UserId == user && x.ShopCartStatus == false).ToList();
 
             return View(shop);
         }
 
+        [HttpPost]
         public IActionResult AddShop(int id, string color, string size)
         {
-            var product = pm.TGetByID(id);
+            int newID = id;
+            var product = pm.TGetByID(newID);
             var user = um.TGetList().Where(x => x.UserMail == HttpContext.Session.GetString("UserMail")).FirstOrDefault().UserId;
             ShopCart shopCart = new ShopCart()
             {
@@ -39,7 +43,7 @@ namespace E_Ticaret.Controllers
                 UserId = user
             };
             sm.TAdd(shopCart);
-            return RedirectToAction("Single","Default",new { id = id });
+            return RedirectToAction("Single","Default",new { id = newID });
         }
         public IActionResult DeleteShop(int id)
         {

@@ -5,7 +5,15 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
-
+@section Css{ 
+<style>
+    footer {
+        position: fixed;
+        bottom: 0px;
+        width: 100%;
+    }
+</style>
+}
 <div class="container">
     @{
         if (Model.Count > 0)
