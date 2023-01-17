@@ -80,6 +80,14 @@
         .cate {
             font-family: 'Courier New';
         }
+
+        #show {
+            display: none
+        }
+
+        #main:hover #show {
+            display: block
+        }
     </style>
 }
 <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
@@ -121,12 +129,12 @@
             <div class="row mb-1">
                 @foreach (var item in Model)
                 {
-                    <div class="me-2 mt-2 border bordered zoom" style="width:32% !important">
+                    <div class="me-2 mt-2 border bordered zoom" style="width:32% !important" id="main">
                         <div class="row-cols-fluid-4 p-2">
                             <div class="col mb-1 border border-dark">
                                 <div>
                                     <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
-                                        <img src="~/img/@item.ImageUrl" width="100%" />
+                                        <img src="~/img/@item.ImageUrl" width="100%"/>
                                     </a>
                                 </div>
                             </div>
@@ -134,15 +142,19 @@
                                 <p class="border-bottom bordered pb-1">@item.Product.Price TL</p>
                             </div>
                             <div class="col text-center">
-                                <div class="col ">
-                                    <b>@item.Product.Brand.BrandName</b> <label class="font-f">@item.Product.ProductName</label>
+                                <div class="col">
+                                        <b>@item.Product.Brand.BrandName</b>
+                                    <div id="show">
+                                        <label>@item.Product.ProductName</label>
+                                    </div>
+
                                 </div>
                                 <div class="col cate">@item.Product.ProductCategory.ProductCategoryName</div>
-                            </div>
-                            <div class="col text-center mt-2">
-                                <button type="button" onclick="getInfo(@item.ProductId)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SizeColor">
-                                    Sepete Ekle
-                                </button>
+                                <div class="col mt-2">
+                                    <button type="button" onclick="getInfo(@item.ProductId)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SizeColor">
+                                        Sepete Ekle
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -180,19 +192,17 @@
             <div class="modal-header">
                 <h1 class="modal-title fs-5">Renk ve Beden Seçiniz</h1>
             </div>
-            <form id="myform" >
-                <input type="hidden" name="Productid" id="productid" value="0"/>
+            <form id="myform">
+                <input type="hidden" name="Productid" id="productid" value="0" />
                 <div class="modal-body">
                     <div class="col">
                         <text>Renk</text>
                         <select name="Color" class="form-select" id="color">
-                                
                         </select>
                     </div>
                     <br />
                     <label>Beden</label>
                     <select name="Size" class="form-select" id="size">
-                        
                     </select>
                 </div>
                 <div class="modal-footer">
