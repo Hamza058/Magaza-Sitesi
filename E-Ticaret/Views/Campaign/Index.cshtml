@@ -1,0 +1,119 @@
+﻿@using EntityLayer.Concrete;
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section Scripts{
+	<script type="text/javascript">
+		function loadComments() {
+			$("#loading").show();
+			$.ajax({
+				type: "Get",
+				url: "/Campaign/Campaigns",
+				success: function (data) {
+					$("#values").html("");
+					$.each(data, function (index, item) {
+						let comment = `<tr>
+											<td>${item.campaignId}</td>
+											<td>${item.brand}</td>
+											<td>${item.productCategory}</td>
+											<td>${item.productName}</td>
+											<td>${item.oldPrice}</td>
+											<td>${item.newPrice}</td>
+											<td>${item.lastDay.substring(0, 10)}</td>
+											<td><a onclick="Delete(${item.campaignId})" type="button" class="text-danger">Sil</a>
+										</tr>`;
+						$("#values").append(comment);
+					});
+					$("#loading").hide();
+				},
+				error: function (e) {
+					console.log(e);
+				}
+			})
+		}
+
+		loadComments();
+
+		$("#btnSave").click(function () {
+			var product = $("#product").val();
+			var newprice = $("#newprice").val();
+			var lastday = $("#lastday").val();
+
+			var jsonData = { "product": product, "newprice": newprice, "lastday": lastday };
+
+			$.ajax({
+				type: "POST",
+				url: "/Campaign/AddCampaign",
+				data: jsonData,
+				success: function (data) {
+					loadComments();
+				},
+				error: function (e) {
+					console.log(e);
+				}
+			})
+			document.getElementById('newprice').value = "";
+		})
+
+		function Delete(id) {
+			$.ajax({
+				type: "Post",
+				url: "/Campaign/DeleteCampaign",
+				data: { id: id },
+				success: function (data) {
+					loadComments();
+				},
+				error: function (e) {
+					console.log(e);
+				}
+			})
+		}
+	</script>
+}
+@if (TempData["message"] != null)
+{
+	<div class="alert alert-danger" role="alert">
+		@TempData["message"]
+	</div>
+}
+<h1>Kampanyalar</h1>
+
+<div>
+	<table class="table table-primary text-center">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Marka</th>
+				<th>Ürün Kategori</th>
+				<th>Ürün Ad</th>
+				<th>Eski Fiyatı</th>
+				<th>İndirimli Fiyat</th>
+				<th>Son Gün</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody id="values">
+		</tbody>
+	</table>
+	<div id="loading" class="text-center">
+		<div class="spinner-border" role="status">
+			<span class="sr-only"></span>
+		</div>
+	</div>
+</div>
+<br />
+<h3>Kampanya Ekle</h3>
+<div class="container">
+	<select id="product" class="form-select">
+		@foreach (var item in ViewBag.Product)
+		{
+			<option value="@item.ProductName">@item.ProductName</option>
+		}
+	</select>
+	<input class="form-control mt-2 mb-2" type="text" id="newprice" pattern="^[0-9]*$" placeholder="İndirimli Fiyatı Giriniz!!!" title="Sadece Rakam Giriniz!!!" required />
+	<span>İndirim Son Tarihi</span>
+	<input class="form-control" type="date" id="lastday" required />
+	<button class="btn btn-outline-info mt-2" type="button" id="btnSave">Ekle</button>
+</div>
