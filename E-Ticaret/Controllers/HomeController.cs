@@ -1,4 +1,5 @@
 ﻿using E_Ticaret.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -28,6 +29,7 @@ namespace E_Ticaret.Controllers
             return View();
         }
 
+        [AllowAnonymous]
         public IActionResult Error(int code)
         {
             ViewBag.code = code;

@@ -13,8 +13,17 @@ namespace E_Ticaret.Controllers
 	{
 		CampaignManager cm = new CampaignManager(new EFCampaignDal());
 		ProductManager pm = new ProductManager(new EFProductDal());
+		ImageManager im = new ImageManager(new EFImageDal());
 		public IActionResult Index()
 		{
+			var value = cm.TGetList();
+			foreach (var item in value)
+			{
+				if (item.LastDay < DateTime.Now)
+				{
+					cm.TDelete(item);
+				}
+			}
 			ViewBag.Product = pm.TGetList();
 			return View();
 		}
@@ -37,7 +46,8 @@ namespace E_Ticaret.Controllers
 					ProductCategory = value.ProductCategory.ProductCategoryName,
 					OldPrice = value.Price,
 					NewPrice = newprice,
-					LastDay = lastday
+					LastDay = lastday,
+					ProductImage = im.TGetList().First(x => x.ProductId == value.ProductId).ImageUrl
 				};
 				cm.TAdd(c);
 				return Json(new { IsSuccess = "true" });

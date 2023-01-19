@@ -15,5 +15,6 @@ namespace EntityLayer.Concrete
         public int OldPrice { get; set; }
         public int NewPrice { get; set; }
         public DateTime LastDay { get; set; }
-    }
+		public string ProductImage { get; set; }
+	}
 }

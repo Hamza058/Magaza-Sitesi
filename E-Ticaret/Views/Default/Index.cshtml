@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+    string active = "active";
 }
 @section Scripts{
     <script type="text/javascript">
@@ -90,32 +91,39 @@
         }
     </style>
 }
-<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-    <div class="carousel-indicators">
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                aria-current="true" aria-label="Slide 1"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                aria-label="Slide 2"></button>
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                aria-label="Slide 3"></button>
-    </div>
+
+<div id="myCarousel" class="carousel slide" data-bs-ride="true">
     <div class="carousel-inner">
-        <div class="carousel-item active">
-            <img src="~/img/araba.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="~/img/araba.jpg" class="d-block w-100" alt="...">
-        </div>
-        <div class="carousel-item">
-            <img src="~/img/araba.jpg" class="d-block w-100" alt="...">
-        </div>
+        @foreach (var item in ViewBag.campaign as List<Campaign>)
+        {
+            <div class="carousel-item @active bg-secondary p-2">
+                <div class="row justify-content-center">
+                    <div class="col-5 bg-light">
+                        <a asp-action="Single" asp-route-cid="@item.CampaignId">
+                            <img src="~/img/@item.ProductImage" class="d-block w-100" alt="...">
+
+                        </a>
+                    </div>
+                    <div class="col-4 bg-light">
+                        <label class="fs-1"><b>@item.Brand</b></label>
+                        <label class="fs-3"> @item.ProductName</label>
+                        <h5 class="text-muted">@item.ProductCategory</h5>
+                        <br />
+                        <p class="fs-1"><del class="text-danger">@item.OldPrice TL</del> Yerine <label class="text-success">@item.NewPrice TL</label></p>
+                    </div>
+                </div>
+            </div>
+            {
+                active = "";
+            }
+        }
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel"
             data-bs-slide="prev">
         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel"
             data-bs-slide="next">
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
@@ -134,7 +142,7 @@
                             <div class="col mb-1 border border-dark">
                                 <div>
                                     <a asp-controller="Default" asp-action="Single" asp-route-id="@item.ProductId">
-                                        <img src="~/img/@item.ImageUrl" width="100%"/>
+                                        <img src="~/img/@item.ImageUrl" width="100%" />
                                     </a>
                                 </div>
                             </div>
@@ -143,7 +151,7 @@
                             </div>
                             <div class="col text-center">
                                 <div class="col">
-                                        <b>@item.Product.Brand.BrandName</b>
+                                    <b>@item.Product.Brand.BrandName</b>
                                     <div id="show">
                                         <label>@item.Product.ProductName</label>
                                     </div>
@@ -168,7 +176,7 @@
                         <summary class="ozet text-center">KATEGORİLER</summary>
                         @foreach (var item in ViewBag.category as List<ProductCategory>)
                         {
-                            <a class="dropdown-item  ps-2 item" asp-controller="Default" asp-action="Index" asp-route-f="@item.ProductCategoryName">@item.ProductCategoryName</a>
+                            <a class="dropdown-item ps-2 item" asp-controller="Default" asp-action="Index" asp-route-f="@item.ProductCategoryName">@item.ProductCategoryName</a>
                         }
                     </details>
                 </div>

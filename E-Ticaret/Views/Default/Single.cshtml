@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="col">
-            <form asp-controller="ShopCart" asp-action="AddShop" asp-route-id="@Model.ProductId" asp-route-color="Color" asp-route-size="Size" method="post">
+            <form asp-controller="ShopCart" asp-action="AddShop" asp-route-id="@Model.ProductId" asp-route-price="@Model.Product.Price" method="post">
                 <div class="row-fluid-cols-6">
                     <div class="col">
                         <div class="row">

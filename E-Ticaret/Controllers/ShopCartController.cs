@@ -29,10 +29,10 @@ namespace E_Ticaret.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddShop(int id, string color, string size)
+        public IActionResult AddShop(int id, string color, string size, int price)
         {
-            int newID = id;
-            var product = pm.TGetByID(newID);
+            var product = pm.TGetByID(id);
+            product.Price = Convert.ToInt16(price);
             var user = um.TGetList().Where(x => x.UserMail == HttpContext.Session.GetString("UserMail")).FirstOrDefault().UserId;
             ShopCart shopCart = new ShopCart()
             {
@@ -43,7 +43,7 @@ namespace E_Ticaret.Controllers
                 UserId = user
             };
             sm.TAdd(shopCart);
-            return RedirectToAction("Single","Default",new { id = newID });
+            return RedirectToAction("Single","Default",new { id = id });
         }
         public IActionResult DeleteShop(int id)
         {
