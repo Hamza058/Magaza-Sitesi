@@ -1,6 +1,6 @@
 # Main Page
 
-![main](https://user-images.githubusercontent.com/78644723/213457378-645071cf-e435-4436-a95d-628168423552.png)
+![main](https://user-images.githubusercontent.com/78644723/213459153-b66a93cf-a2dd-4ac0-a3a5-a7b5accaf8d7.png)
 
 # Single Page
 
