@@ -6,7 +6,7 @@
 
 ![singlee](https://user-images.githubusercontent.com/78644723/210089714-dc5a9849-4989-4541-b7c4-7eb8a5e4e807.PNG)
 
-# Shopping Cary Page
+# Shopping Cart Page
 
 ![sepet](https://user-images.githubusercontent.com/78644723/210089758-e12520d9-8f2f-4860-bf27-ac05846e49b9.PNG)
 
