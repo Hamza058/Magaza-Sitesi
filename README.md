@@ -1,12 +1,12 @@
 # Main Page
 
-![main](https://user-images.githubusercontent.com/78644723/210089695-1d65ac68-00b6-4637-9030-049cc0b28e50.PNG)
+![main](https://user-images.githubusercontent.com/78644723/213459153-b66a93cf-a2dd-4ac0-a3a5-a7b5accaf8d7.png)
 
 # Single Page
 
 ![singlee](https://user-images.githubusercontent.com/78644723/210089714-dc5a9849-4989-4541-b7c4-7eb8a5e4e807.PNG)
 
-# Shopping Cary Page
+# Shopping Cart Page
 
 ![sepet](https://user-images.githubusercontent.com/78644723/210089758-e12520d9-8f2f-4860-bf27-ac05846e49b9.PNG)
 
