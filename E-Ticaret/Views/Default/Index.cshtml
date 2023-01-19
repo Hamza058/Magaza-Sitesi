@@ -110,6 +110,7 @@
                         <h5 class="text-muted">@item.ProductCategory</h5>
                         <br />
                         <p class="fs-1"><del class="text-danger">@item.OldPrice TL</del> Yerine <label class="text-success">@item.NewPrice TL</label></p>
+                        <p class="fs-5"><b>Son Gün: </b>@(((DateTime)item.LastDay).ToString("dd MMMM"))</p>
                     </div>
                 </div>
             </div>

@@ -1,8 +1,52 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@using EntityLayer.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Admin>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Adminler</h1>
+
+<table class="table text-center">
+    <thead class="bg-info">
+        <tr>
+            <th>#</th>
+            <th>Admin Name</th>
+            <th>Admin Password</th>
+            <th>Admin Role</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.AdminId</td>
+                <td>@item.AdminName</td>
+                <td>@item.AdminPassword</td>
+                <td>@item.AdminRole</td>
+                <td>
+                    @{
+                        if (item.AdminStatus)
+                        {
+                            <a asp-action="DeleteAdmin" asp-route-id="@item.AdminId" class="btn btn-danger text-dark">Pasif Yap</a>
+                        }
+                        else
+                        {
+                            <a asp-action="DeleteAdmin" asp-route-id="@item.AdminId" class="btn btn-success text-dark">Aktif Yap</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<br />
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new X.PagedList.Web.Common.PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+            {"page-link"}
+})
+<partial name="AddAdminPartialView.cshtml" />

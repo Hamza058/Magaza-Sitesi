@@ -32,7 +32,7 @@ namespace E_Ticaret.Controllers
             _fileProvider = fileProvider;
         }
 
-        public IActionResult Index(string f = "", int p = 1)
+        public IActionResult Index(string f, int p = 1)
         {
             if (f == null)
                 f = "";

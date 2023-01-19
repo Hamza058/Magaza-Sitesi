@@ -109,14 +109,14 @@ namespace E_Ticaret.Controllers
             var value = admins.FirstOrDefault(x => x.AdminName == admin.AdminName && x.AdminPassword == admin.AdminPassword);
             if (value != null)
             {
-                var claims = new List<Claim>
-                {
-                    new Claim(ClaimTypes.Name,ClaimTypes.Role,admin.AdminName,admin.AdminRole.ToString())
-                };
-                var useridentity = new ClaimsIdentity(claims, "a");
-                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
-                await HttpContext.SignInAsync(principal);
-                return RedirectToAction("Index", "Category");
+				var claims = new List<Claim>
+				{
+					new Claim(ClaimTypes.Name,ClaimTypes.Role,admin.AdminName,admin.AdminRole.ToString())
+				};
+				var useridentity = new ClaimsIdentity(claims, "A");
+				ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+				await HttpContext.SignInAsync(principal);
+				return RedirectToAction("Index", "Home");
             }
             ViewBag.Message = "Hatalı Kullancı Adı veya Şifre";
             return View();

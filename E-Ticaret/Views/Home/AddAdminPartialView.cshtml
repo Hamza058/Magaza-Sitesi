@@ -1,0 +1,34 @@
+﻿<button type="button" class="btn btn-outline-warning mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal">Yeni Admin Ekle</button>
+
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Admin Ekle</h1>
+            </div>
+            <form asp-controller="Home" asp-action="AddAdmin" method="post">
+                <div class="modal-body">
+                    <div class="col mb-2">
+                        <text>Admin Adı</text>
+                        <input type="text" class="form-control" name="AdminName" required/>
+                    </div>
+                    <div class="col mb-2">
+                        <text>Admin Parola</text>
+                        <input type="password" class="form-control" name="AdminPassword" required/>
+                    </div>
+                    <div class="col">
+                        <text>Admin Role</text>
+                        <select name="AdminRole" class="form-select">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

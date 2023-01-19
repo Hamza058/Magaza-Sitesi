@@ -16,7 +16,7 @@ namespace E_Ticaret.Controllers
     {
         CategoryManager cm = new CategoryManager(new EFCategoryDal());
 
-        public IActionResult Index(string f = "", int p = 1)
+        public IActionResult Index(string f, int p = 1)
         {
             if (f == null)
                 f = "";
