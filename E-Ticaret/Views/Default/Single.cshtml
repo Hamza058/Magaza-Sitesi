@@ -4,24 +4,21 @@
 @{
     ViewData["Title"] = "Single";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
+    string active = "active";
 }
 <div class="container">
     <div class="row border">
         <div class="col p-3">
             <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-                <div class="carousel-indicators">
-                    @for (int i = 0; i < ViewBag.imgs.Count; i++)
-                    {
-                        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i"
-                                class="active bg-dark" aria-current="true" aria-label="Slide @i"></button>
-                    }
-                </div>
                 <div class="carousel-inner">
                     @foreach (var item in ViewBag.imgs as List<Image>)
                     {
-                        <div class="carousel-item active">
+                        <div class="carousel-item @active p-5">
                             <img src="~/img/@item.ImageUrl" class="d-block w-100" alt="...">
                         </div>
+                        {
+                            active = "";
+                        }
                     }
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
