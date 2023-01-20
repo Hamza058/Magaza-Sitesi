@@ -13,7 +13,8 @@
         var value = um.TGetList().FirstOrDefault(x => x.UserMail == Context.Session.GetString("UserMail"));
         name = value.UserName + " " + value.UserSurname;
     }
-
+    CategoryManager cm = new CategoryManager(new EFCategoryDal());
+    List<Category> category = cm.TGetList();
 }
 
 <!DOCTYPE html>
@@ -57,7 +58,7 @@
                             Kategoriler
                         </a>
                         <ul class="dropdown-menu">
-                            @foreach (var item in @ViewBag.cat as List<Category>)
+                            @foreach (var item in category)
                             {
                                 <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.CategoryName">@item.CategoryName</a></li>
                             }
@@ -117,7 +118,7 @@
                     <div class="col-4 pt-3"><p class="text-warning">Created by Hamza Kılıç</p></div>
                     <div class="col-4">
                         <p class="text-warning">Kategoriler</p>
-                        @foreach (var item in ViewBag.cat as List<Category>)
+                        @foreach (var item in category)
                         {
                             <label class="text-light">@item.CategoryName / </label>
                         }

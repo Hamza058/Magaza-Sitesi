@@ -17,13 +17,6 @@ namespace E_Ticaret.Controllers
         CommentManager cm = new CommentManager(new EFCommentDal());
         UserManager um = new UserManager(new EFUserDal());
 
-        [AllowAnonymous]
-        public IActionResult Index(int id)
-        {
-            var comments = cm.GetWithUsers().Where(x => x.ProductId == id).ToList();
-            return View(comments);
-        }
-
         [HttpPost]
         public IActionResult AddComment(Comment comment, int id)
         {
@@ -32,7 +25,7 @@ namespace E_Ticaret.Controllers
             comment.CreatedDate = DateTime.Now;
             comment.ProductId = id;
             cm.TAdd(comment);
-            return RedirectToAction("Index", "Comment", new { id = id });
+            return RedirectToAction("Single", "Default", new { id = id });
         }
 
         public IActionResult AdminComment(string f, int p = 1)

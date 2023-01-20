@@ -6,6 +6,28 @@
     Layout = "~/Views/Shared/_MainLayout.cshtml";
     string active = "active";
 }
+@section Css{
+    <style>
+        #comment {
+            display: none
+        }
+        #info {
+            display: block
+        }
+    </style>
+}
+@section Scripts{ 
+<script type="text/javascript">
+    function comment() {
+        $("#comment").css("display", "block");
+        $("#info").css("display", "none");
+    }
+    function info() {
+        $("#comment").css("display", "none");
+        $("#info").css("display", "block");
+    }
+</script>
+}
 <div class="container">
     <div class="row border">
         <div class="col p-3">
@@ -85,16 +107,43 @@
         <table class="table table-bordered" width="100%">
             <thead class="bg-secondary text-center">
                 <tr style="width:100%">
-                    <td width="50%"><a asp-controller="ProductInfo" asp-action="ClothesInfo" asp-route-id="@Model.ProductId" class="text-decoration-none text-light" target="info">Ürün Açıklama</a></td>
                     <td width="50%">
-                        <a asp-controller="Comment" asp-action="Index" asp-route-id="@Model.ProductId" class="text-decoration-none text-light" target="info">Yorumlar</a>
+                        <a onclick="info()" style="cursor:pointer" class="text-decoration-none text-light">Ürün Açıklama</a>
+                    </td>
+                    <td width="50%">
+                        <a onclick="comment()" style="cursor: pointer" class="text-decoration-none text-light">Yorumlar</a>
                     </td>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td colspan="2" height="300px">
-                        <iframe src="/ProductInfo/ClothesInfo/@Model.ProductId" name="info" width="100%" height="100%"></iframe>
+                        <div id="info">
+                            <vc:product-info id="@Model.ProductId"></vc:product-info>
+                        </div>
+                        <div id="comment">
+                            @foreach (var item in ViewBag.comments as List<Comment>)
+                            {
+                                <div class="col border m-2">
+                                    <div class="row-fluid-cols-2 p-2">
+                                        <div class="col border-bottom">
+                                            <div class="row">
+                                                <div class="col-3">
+                                                    <b>@item.User.UserName @item.User.UserSurname</b>
+                                                </div>
+                                                <div class="col-9 text-end">
+                                                    <label>@(((DateTime)item.CreatedDate).ToString("dd-MMM-yyyy"))</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col pt-2">
+                                            @item.Content
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <vc:comment id="@Model.ProductId"></vc:comment>
+                        </div>
                     </td>
                 </tr>
             </tbody>
@@ -118,9 +167,6 @@
                         <div class="col text-center">
                             <div class="col "><b>@item.Product.Brand.BrandName</b> @item.Product.ProductName</div>
                             <div class="col">@item.Product.ProductCategory.ProductCategoryName</div>
-                        </div>
-                        <div class="col text-center mt-2">
-                            <vc:size-and-color id="@item.ProductId"></vc:size-and-color>
                         </div>
                     </div>
                 </div>

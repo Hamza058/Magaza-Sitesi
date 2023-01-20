@@ -1,0 +1,43 @@
+﻿@using EntityLayer.Concrete
+@model ProductClothesInfo
+
+@{
+    if (Model.AddInfo != null)
+    {
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-secondary" style="width:30%">Ek Bilgi</li>
+            <li class="list-group-item list-group-item-dark" style="width:70%">@Model.AddInfo</li>
+        </ul>
+    }
+}
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item list-group-item-secondary" style="width:30%">Cinsiyet</li>
+    <li class="list-group-item list-group-item-dark" style="width:70%">@Model.Gender</li>
+</ul>
+@{
+    if (Model.Pattern != null)
+    {
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-secondary" style="width:30%">Desen</li>
+            <li class="list-group-item list-group-item-dark" style="width:70%">@Model.Pattern</li>
+        </ul>
+    }
+}
+@{
+    if (Model.CollarStyle != null)
+    {
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-secondary" style="width:30%">Yaka Şekli</li>
+            <li class="list-group-item list-group-item-dark" style="width:70%">@Model.CollarStyle</li>
+        </ul>
+    }
+}
+@{
+    if (Model.Material != null)
+    {
+        <ul class="list-group list-group-horizontal">
+            <li class="list-group-item list-group-item-secondary" style="width:30%">Malzeme</li>
+            <li class="list-group-item list-group-item-dark" style="width:70%">@Model.Material</li>
+        </ul>
+    }
+}

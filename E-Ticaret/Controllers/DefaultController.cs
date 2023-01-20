@@ -23,8 +23,8 @@ namespace E_Ticaret.Controllers
         BrandManager bm = new BrandManager(new EFBrandDal());
         ImageManager im = new ImageManager(new EFImageDal());
         ProductSizeColorManager pscm = new ProductSizeColorManager(new EFProductSizeColorDal());
-        CategoryManager cm = new CategoryManager(new EFCategoryDal());
         CampaignManager cpm = new CampaignManager(new EFCampaignDal());
+        CommentManager com = new CommentManager(new EFCommentDal());
 
         //[Route("[controller]/[action]/{f?}")]
         public IActionResult Index(string f)
@@ -34,7 +34,6 @@ namespace E_Ticaret.Controllers
             var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && (x.Product.Brand.BrandName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.ProductCategoryName.ToLower().Contains(f.ToLower()) || x.Product.ProductName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.Category.CategoryName.Contains(f))).ToList();
             ViewBag.category = pcm.TGetList();
             ViewBag.brand = bm.TGetList();
-            ViewBag.cat = cm.TGetList();
             ViewBag.campaign = cpm.TGetList();
 
             return View(values);
@@ -42,6 +41,7 @@ namespace E_Ticaret.Controllers
         [Route("[controller]/[action]/{id?}/{cid?}")]
         public IActionResult Single(int id,int cid)
         {
+            ViewBag.comments = com.GetWithUsers().Where(x => x.ProductId == id).ToList();
             int newprice = 0;
 			if (cid != 0)
 			{
@@ -54,7 +54,6 @@ namespace E_Ticaret.Controllers
 
             ViewBag.Colors = pscm.TGetByID(id).Color.Split('-');
             ViewBag.Size = pscm.TGetByID(id).Size.Split('-');
-            ViewBag.cat = cm.TGetList();
 
             
             ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
