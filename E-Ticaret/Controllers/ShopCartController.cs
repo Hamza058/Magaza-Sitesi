@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace E_Ticaret.Controllers
 {
+    
     public class ShopCartController : Controller
     {
         ShopCartManager sm = new ShopCartManager(new EFShopCartDal());

@@ -107,6 +107,7 @@ namespace E_Ticaret.Controllers
         {
             var admins = am.TGetList();
             var value = admins.FirstOrDefault(x => x.AdminName == admin.AdminName && x.AdminPassword == admin.AdminPassword);
+            HttpContext.Session.SetString("AdminName", admin.AdminName);
             if (value != null)
             {
 				var claims = new List<Claim>
@@ -116,7 +117,7 @@ namespace E_Ticaret.Controllers
 				var useridentity = new ClaimsIdentity(claims, "A");
 				ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
 				await HttpContext.SignInAsync(principal);
-				return RedirectToAction("Index", "Home");
+				return RedirectToAction("Index", "Category");
             }
             ViewBag.Message = "Hatalı Kullancı Adı veya Şifre";
             return View();
@@ -125,6 +126,7 @@ namespace E_Ticaret.Controllers
         public IActionResult Logout()
         {
             HttpContext.Session.Remove("UserMail");
+            HttpContext.Session.Remove("AdminName");
             return RedirectToAction("Index", "Default");
         }
     }
