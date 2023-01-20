@@ -10,7 +10,6 @@ using X.PagedList;
 
 namespace E_Ticaret.Controllers
 {
-    [AllowAnonymous]
     public class UserController : Controller
     {
         UserManager um = new UserManager(new EFUserDal());

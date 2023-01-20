@@ -8,7 +8,6 @@ using System.Linq;
 
 namespace E_Ticaret.Controllers
 {
-	[AllowAnonymous]
 	public class CampaignController : Controller
 	{
 		CampaignManager cm = new CampaignManager(new EFCampaignDal());

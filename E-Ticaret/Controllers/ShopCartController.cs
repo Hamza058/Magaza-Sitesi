@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace E_Ticaret.Controllers
 {
-    [Authorize]
     public class ShopCartController : Controller
     {
         ShopCartManager sm = new ShopCartManager(new EFShopCartDal());
@@ -51,7 +50,6 @@ namespace E_Ticaret.Controllers
             sm.TDelete(value);
             return RedirectToAction("Index","ShopCart");
         }
-        [AllowAnonymous]
         public IActionResult PendingOrder()
         {
             var value = sm.TGetList().Where(x => x.ShopCartStatus == true && x.ShopCartConfirm==false).ToList();
@@ -67,7 +65,6 @@ namespace E_Ticaret.Controllers
             }
             return View();
         }
-        [AllowAnonymous]
         public IActionResult ConfirmedOrder()
         {
             var value = sm.TGetList().Where(x => x.ShopCartConfirm == true).ToList();
@@ -83,7 +80,6 @@ namespace E_Ticaret.Controllers
             }
             return View();
         }
-        [AllowAnonymous]
         [HttpGet]
         public IActionResult Basket(int id)
         {

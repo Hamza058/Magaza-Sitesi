@@ -11,7 +11,6 @@ using X.PagedList;
 
 namespace E_Ticaret.Controllers
 {
-    [AllowAnonymous]
     public class ProductCategoryController : Controller
     {
         ProductCategoryManager pcm = new ProductCategoryManager(new EFProductCategoryDal());
