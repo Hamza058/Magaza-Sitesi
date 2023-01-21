@@ -5,6 +5,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,6 +18,8 @@ namespace E_Ticaret.Controllers
     public class HomeController : Controller
     {
         AdminManager am = new AdminManager(new EFAdminDal());
+        CategoryManager cm = new CategoryManager(new EFCategoryDal());
+
         public IActionResult Index(string f, int p = 1)
         {
             if (f == null)
@@ -45,6 +48,14 @@ namespace E_Ticaret.Controllers
         {
             ViewBag.code = code;
             return View();
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public IActionResult Items()
+        {
+			var category = cm.TGetList();
+			return Json(category);
         }
     }
 }

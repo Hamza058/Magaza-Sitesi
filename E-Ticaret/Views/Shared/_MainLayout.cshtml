@@ -13,8 +13,6 @@
         var value = um.TGetList().FirstOrDefault(x => x.UserMail == Context.Session.GetString("UserMail"));
         name = value.UserName + " " + value.UserSurname;
     }
-    CategoryManager cm = new CategoryManager(new EFCategoryDal());
-    List<Category> category = cm.TGetList();
 }
 
 <!DOCTYPE html>
@@ -36,6 +34,31 @@
             width: 100% !important;
         }
     </style>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            function loadComments() {
+                $.ajax({
+                    type: "Get",
+                    url: "/Home/Items",
+                    success: function (data) {
+                        $.each(data, function (index, item) {
+                            console.log(item)
+                            let category = `<li><a class="dropdown-item" href="/Default/Index/${item.categoryName}">${item.categoryName}</a></li>`;
+                            /**/
+                            let category2 = `<label class="text-light"> ${item.categoryName} / </label>`;
+        /**/
+        $("#menu").append(category);
+        $("#footerkat").append(category2);
+    });
+},
+error: function (e) {
+    console.log(e);
+}
+})
+}
+loadComments();
+})
+    </script>
 </head>
 
 <body>
@@ -57,11 +80,11 @@
                            aria-expanded="false">
                             Kategoriler
                         </a>
-                        <ul class="dropdown-menu">
-                            @foreach (var item in category)
+                        <ul class="dropdown-menu" id="menu">
+                            @*@foreach (var item in category)
                             {
                                 <li><a class="dropdown-item" asp-controller="Default" asp-action="Index" asp-route-f="@item.CategoryName">@item.CategoryName</a></li>
-                            }
+                            }*@
                         </ul>
                     </li>
                     <li class="nav-item">
@@ -118,10 +141,7 @@
                     <div class="col-4 pt-3"><p class="text-warning">Created by Hamza Kılıç</p></div>
                     <div class="col-4">
                         <p class="text-warning">Kategoriler</p>
-                        @foreach (var item in category)
-                        {
-                            <label class="text-light">@item.CategoryName / </label>
-                        }
+                        <div id="footerkat"></div>
                     </div>
                 </div>
             </div>
