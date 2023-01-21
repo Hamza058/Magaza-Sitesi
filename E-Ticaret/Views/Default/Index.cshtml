@@ -81,13 +81,30 @@
         .cate {
             font-family: 'Courier New';
         }
-
+        #main {
+            width:32% !important
+        }
         #show {
             display: none
         }
 
         #main:hover #show {
             display: block
+        }
+
+        @@media only screen and (max-width: 500px) {
+            .cate {
+                font-size: 80% !important;
+            }
+            #add {
+                width: 100% !important;
+                font-size: 65% !important;
+            }
+        }
+        @@media only screen and (max-width: 860px) {
+            #main {
+                width: 46% !important;
+            }
         }
     </style>
 }
@@ -138,7 +155,7 @@
             <div class="row mb-1">
                 @foreach (var item in Model)
                 {
-                    <div class="me-2 mt-2 border bordered zoom" style="width:32% !important" id="main">
+                    <div class="me-2 mt-2 border bordered zoom" id="main">
                         <div class="row-cols-fluid-4 p-2">
                             <div class="col mb-1 border border-dark">
                                 <div>
@@ -156,13 +173,10 @@
                                     <div id="show">
                                         <label>@item.Product.ProductName</label>
                                     </div>
-
                                 </div>
                                 <div class="col cate">@item.Product.ProductCategory.ProductCategoryName</div>
                                 <div class="col mt-2">
-                                    <button type="button" onclick="getInfo(@item.ProductId)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SizeColor">
-                                        Sepete Ekle
-                                    </button>
+                                    <input type="button" onclick="getInfo(@item.ProductId)" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#SizeColor" id="add" value="Sepete Ekle" />
                                 </div>
                             </div>
                         </div>
