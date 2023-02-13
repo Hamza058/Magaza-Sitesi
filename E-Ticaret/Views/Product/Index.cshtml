@@ -17,11 +17,10 @@
                 data: { id: id },
                 success: function (data) {
                     $("#info").html("");
-                    let datas = jQuery.parseJSON(data);
-                    let infos = `<li class="list-group-item"><b>Ürün Ad: </b>${datas.Name}</li>
-                                <li class="list-group-item"><b>Marka: </b>${datas.Brand}</li>
-                                <li class="list-group-item"><b>Beden: </b>${datas.Size}</li>
-                                <li class="list-group-item"><b>Renk: </b>${datas.Color}</li>`;
+                    let infos = `<li class="list-group-item"><b>Ürün Ad: </b>${data.Name}</li>
+                                <li class="list-group-item"><b>Marka: </b>${data.Brand}</li>
+                                <li class="list-group-item"><b>Beden: </b>${data.Size}</li>
+                                <li class="list-group-item"><b>Renk: </b>${data.Color}</li>`;
                     $("#info").append(infos);
                 },
                 error: function (e) {
@@ -35,6 +34,7 @@
                     success: function (data) {
                         $("#image").html("");
                         $.each(data, function (index, item) {
+                            console.log(item)
                             let images = `<div class="col-4">
                                             <img src="/img/${item.imageUrl}" style="width:100%"></img>
                                           </div>`;

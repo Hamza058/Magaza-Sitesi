@@ -1,0 +1,51 @@
+﻿@using EntityLayer.Concrete
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model IPagedList<Brand>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Markalar</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Marka Adı</th>
+            <th>Marka Durumu</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.BrandId</td>
+                <td>@item.BrandName</td>
+                <td class="ps-5">@item.BrandStatus</td>
+                <td class="text-center">
+                    @{
+                        if (item.BrandStatus)
+                        {
+                            <a asp-action="DeleteBrand" asp-route-id="@item.BrandId" class="btn btn-danger text-dark">Pasif Yap</a>
+                        }
+                        else
+                        {
+                            <a asp-action="DeleteBrand" asp-route-id="@item.BrandId" class="btn btn-success text-dark">Aktif Yap</a>
+                        }
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new X.PagedList.Web.Common.PagedListRenderOptions
+{
+    LiElementClasses = new List<string>
+            {"page-link"}
+})
+<partial name="AddBrandPartialView.cshtml" />
+

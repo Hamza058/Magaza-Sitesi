@@ -1,0 +1,23 @@
+﻿<button type="button" class="btn btn-warning mt-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Yeni Marka Ekle</button>
+
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Marka Ekle</h1>
+            </div>
+            <form asp-controller="Brand" asp-action="AddBrand" method="post">
+                <div class="modal-body">
+                    <div class="col">
+                        <text>Marka Adı</text>
+                        <input type="text" class="form-control" name="BrandName" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
