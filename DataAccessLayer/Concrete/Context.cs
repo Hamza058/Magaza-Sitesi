@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=HKILIC\\SQLEXPRESS;database=DbETicaret;integrated security=true;");
+            optionsBuilder.UseSqlServer("server=.\\SQLEXPRESS;database=DbETicaret;integrated security=true;");
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
