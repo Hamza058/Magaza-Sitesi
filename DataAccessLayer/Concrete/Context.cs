@@ -12,7 +12,7 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server=.\\SQLEXPRESS;database=DbETicaret;integrated security=true;");
+            optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;password=123456;database=dbeticaret;");
         }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }

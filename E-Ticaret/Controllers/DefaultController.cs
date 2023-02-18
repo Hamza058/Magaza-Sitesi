@@ -31,7 +31,7 @@ namespace E_Ticaret.Controllers
 		{
 			if (f == null)
 				f = "";
-			var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && (x.Product.Brand.BrandName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.ProductCategoryName.ToLower().Contains(f.ToLower()) || x.Product.ProductName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.Category.CategoryName.Contains(f))).ToList();
+			var values = im.GetProducts().Where(x => x.ImageUrl.Contains('1') && x.Product.ProductStatus && (x.Product.Brand.BrandName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.ProductCategoryName.ToLower().Contains(f.ToLower()) || x.Product.ProductName.ToLower().Contains(f.ToLower()) || x.Product.ProductCategory.Category.CategoryName.Contains(f))).ToList();
 			ViewBag.category = pcm.TGetList();
 			ViewBag.brand = bm.TGetList();
 
