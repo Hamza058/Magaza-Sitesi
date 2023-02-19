@@ -13,7 +13,7 @@ html, body {
     border-style: none;
     border-bottom: groove;
     outline: none;
-    width: 50%;
+    width: 70%;
     color: #555555;
     background: transparent;
     padding-left: 30px;
@@ -24,9 +24,6 @@ h1{
 }
 .header {
     padding: 70px 15px 74px 15px;
-}
-.mid {
-    padding-left: 25%;
 }
 
 .top {
@@ -57,7 +54,7 @@ h1{
 
 .btnloc {
     width: 100px;
-    margin-left: 35%;
+    margin: auto;
 }
 
 i {
@@ -67,4 +64,25 @@ i {
 a {
     font-family: cursive;
     opacity:60%;
+}
+
+.login {
+    margin: auto;
+    flex: 0 0 auto;
+    width: 35% !important;
+}
+
+@media only screen and (max-width: 1100px) {
+    .login {
+        margin: auto;
+        flex: 0 0 auto;
+        width: 60% !important;
+    }
+}
+@media only screen and (max-width: 750px) {
+    .login {
+        margin: auto;
+        flex: 0 0 auto;
+        width: 85% !important;
+    }
 }
