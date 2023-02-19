@@ -110,14 +110,14 @@ namespace E_Ticaret.Controllers
             HttpContext.Session.SetString("AdminName", admin.AdminName);
             if (value != null)
             {
-				var claims = new List<Claim>
-				{
-					new Claim(ClaimTypes.Name,ClaimTypes.Role,admin.AdminName,admin.AdminRole.ToString())
-				};
-				var useridentity = new ClaimsIdentity(claims, "A");
-				ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
-				await HttpContext.SignInAsync(principal);
-				return RedirectToAction("Index", "Category");
+                var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name,ClaimTypes.Role,value.AdminName,value.AdminRole.ToString())
+                };
+                var useridentity = new ClaimsIdentity(claims, "A");
+                ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
+                await HttpContext.SignInAsync(principal);
+                return RedirectToAction("Index", "Category");
             }
             ViewBag.Message = "Hatalı Kullancı Adı veya Şifre";
             return View();

@@ -12,8 +12,8 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;password=123456;database=dbeticaret;");
-        }
+			optionsBuilder.UseMySQL("server=localhost;port=3306;user=root;password=123456;database=dbeticaret;");
+		}
         public DbSet<Category> Categories { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Product> Products { get; set; }
