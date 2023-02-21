@@ -26,11 +26,6 @@ h1{
     padding: 70px 15px 74px 15px;
 }
 
-.top {
-    margin-top: 10%;
-    width:100% !important;
-}
-
 .boxShadow {
     box-shadow: 15px 15px 25px 5px #b6b6b6;
 }
@@ -72,21 +67,21 @@ a {
 }
 
 .lgnSite {
-    margin: auto;
+    margin: 10% auto;
     flex: 0 0 auto;
     width: 35% !important;
 }
 
 @media only screen and (max-width: 1100px) {
     .lgnSite {
-        margin: auto;
+        margin: 10% auto;
         flex: 0 0 auto;
         width: 60% !important;
     }
 }
 @media only screen and (max-width: 750px) {
     .lgnSite {
-        margin: auto;
+        margin: 10% auto;
         flex: 0 0 auto;
         width: 85% !important;
     }
