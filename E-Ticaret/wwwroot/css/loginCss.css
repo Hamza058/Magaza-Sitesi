@@ -57,6 +57,10 @@ h1{
     margin: auto;
 }
 
+input:focus:invalid {
+    border-bottom-color: red;
+}
+
 i {
     position: absolute;
 }
@@ -66,21 +70,21 @@ a {
     opacity:60%;
 }
 
-.login {
+.lgnSite {
     margin: auto;
     flex: 0 0 auto;
     width: 35% !important;
 }
 
 @media only screen and (max-width: 1100px) {
-    .login {
+    .lgnSite {
         margin: auto;
         flex: 0 0 auto;
         width: 60% !important;
     }
 }
 @media only screen and (max-width: 750px) {
-    .login {
+    .lgnSite {
         margin: auto;
         flex: 0 0 auto;
         width: 85% !important;
