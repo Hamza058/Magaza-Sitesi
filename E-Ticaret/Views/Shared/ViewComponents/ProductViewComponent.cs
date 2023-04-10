@@ -15,24 +15,12 @@ namespace E_Ticaret.Views.Shared.ViewComponents
         ImageManager im = new ImageManager(new EFImageDal());
         ProductSizeColorManager pscm = new ProductSizeColorManager(new EFProductSizeColorDal());
 
-        public IViewComponentResult Invoke(int id, int type = 1)
+        public IViewComponentResult Invoke()
         {
-            if (type==1)
-            {
-                ViewBag.brands = bm.TGetList();
-                ViewBag.category = pcm.TGetList();
+            ViewBag.brands = bm.TGetList();
+            ViewBag.category = pcm.TGetList();
 
-                return View("Default");
-            }
-            else
-            {
-                ViewBag.Size = pscm.TGetByID(id).Size;
-                ViewBag.Color = pscm.TGetByID(id).Color;
-                ViewBag.imgs = im.TGetList().Where(x => x.ProductId == id).ToList();
-
-                return View("Type2",im.GetByIDProduct(id));
-            }
-
+            return View("Default");
         }
     }
 }
